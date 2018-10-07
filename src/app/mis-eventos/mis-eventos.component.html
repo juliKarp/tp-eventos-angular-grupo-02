@@ -1,17 +1,19 @@
 <div class="row p-0 m-0">
-    <div class="col- p-0 m-0">
+    <div class="col-2 p-0 m-0">
         <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-                <a class="nav-link active" href="#">Agenda</a>
+                <a class="nav-link" [routerLink]="'/eventos/agenda'" routerLinkActive="active">Agenda</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Organizados por mi</a>
+                <a class="nav-link" [routerLink]="'/eventos/organizados'" routerLinkActive="active">Organizados por mi</a>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pendientes</a>
+                <a class="nav-link" [routerLink]="'/eventos/pendientes'" routerLinkActive="active">Pendientes</a>
             </li>
         </ul>
     </div>
     <div class="col p-0 m-0">
-        <app-mis-eventos-agenda></app-mis-eventos-agenda>
+        <div class="jumbotron m-0 p-3">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>
