@@ -9,6 +9,7 @@ import { MisEventosOrganizadosComponent } from './mis-eventos/mis-eventos-organi
 import { MisEventosPendientesComponent } from './mis-eventos/mis-eventos-pendientes/mis-eventos-pendientes.component';
 
 import { RoutingRoutes } from './app.routing'
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
     declarations: [
@@ -16,13 +17,16 @@ import { RoutingRoutes } from './app.routing'
         MisEventosComponent,
         MisEventosAgendaComponent,
         MisEventosOrganizadosComponent,
-        MisEventosPendientesComponent
+        MisEventosPendientesComponent,
+        PerfilComponent
     ],
     imports: [
         BrowserModule,
         RoutingRoutes
     ],
-    providers: [{ provide: APP_BASE_HREF, useValue: '' }],
+    providers: [
+        { provide: APP_BASE_HREF, useValue: '' }
+    ],
     bootstrap: [
         AppComponent
     ]
