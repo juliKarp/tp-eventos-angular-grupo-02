@@ -7,8 +7,10 @@ import { MisEventosComponent } from './mis-eventos/mis-eventos.component';
 import { MisEventosAgendaComponent } from './mis-eventos/mis-eventos-agenda/mis-eventos-agenda.component';
 import { MisEventosOrganizadosComponent } from './mis-eventos/mis-eventos-organizados/mis-eventos-organizados.component';
 import { MisEventosPendientesComponent } from './mis-eventos/mis-eventos-pendientes/mis-eventos-pendientes.component';
+import { NuevoEventoAbiertoComponent } from './mis-eventos/mis-eventos-organizados/nuevo-evento-abierto/nuevo-evento-abierto.component';
+import { NuevoEventoCerradoComponent } from './mis-eventos/mis-eventos-organizados/nuevo-evento-cerrado/nuevo-evento-cerrado.component';
 
-import { RoutingRoutes } from './app.routing'
+import { RoutingRoutes } from './app.routing';
 import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
@@ -18,7 +20,9 @@ import { PerfilComponent } from './perfil/perfil.component';
         MisEventosAgendaComponent,
         MisEventosOrganizadosComponent,
         MisEventosPendientesComponent,
-        PerfilComponent
+        PerfilComponent,
+        NuevoEventoAbiertoComponent,
+        NuevoEventoCerradoComponent,
     ],
     imports: [
         BrowserModule,
