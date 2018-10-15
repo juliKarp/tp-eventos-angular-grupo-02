@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EventoService } from '../../../services/evento.service';
+import Evento from '../../../domain/evento';
 
 @Component({
   selector: 'app-mis-eventos-agenda',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MisEventosAgendaComponent implements OnInit {
 
-  constructor() { }
+  eventos: Evento[]
+
+  constructor(private eventoService: EventoService) { }
 
   ngOnInit() {
+    this.eventos = this.eventoService.eventosAgenda
   }
 
 }

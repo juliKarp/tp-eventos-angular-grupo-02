@@ -3,13 +3,13 @@
     <div class="card" style="width: 100%;">
       <img class="card-img-top" src="https://www.weact.org/wp-content/uploads/2016/10/Blank-profile.png">
       <div class="card-body">
-        <h5 class="card-title">Nombre Apellido</h5>
-        <p class="card-text">@username</p>
+        <h5 class="card-title">{{usuario.nombreApellido}}</h5>
+        <p class="card-text"><i class="fas fa-at"></i>{{usuario.nombreUsuario}}</p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Tipo usuario</li>
-        <li class="list-group-item">email@mail.com.ar</li>
-        <li class="list-group-item">Cant amigos</li>
+        <li class="list-group-item"><i class="fas fa-fingerprint"></i> {{usuario.tipoDeUsuario}}</li>
+        <li class="list-group-item"><i class="fas fa-envelope"></i> {{usuario.email}}</li>
+        <li class="list-group-item"><i class="fas fa-user-friends"></i> {{usuario.cantidadAmigos}}</li>
       </ul>
     </div>
   </div>
@@ -26,18 +26,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Mejor amigo</td>
-            <td>usuarioMejorAmigo</td>
-            <td><button type="button" class="btn btn-primary btn-sm">
-                <i class="far fa-trash-alt"></i> Eliminar
-              </button></td>
-          </tr>
-          <tr>
-            <td>Otro Amigo</td>
-            <td>elotroamigo</td>
-            <td><button type="button" class="btn btn-primary btn-sm">
-                <i class="far fa-trash-alt"></i> Eliminar
+          <tr *ngFor="let amigo of usuario.amigos">
+            <td>{{amigo.nombreApellido}}</td>
+            <td>{{amigo.nombreUsuario}}</td>
+            <td><button type="button" class="btn btn-danger btn-sm" (click)="eliminarAmigo(amigo)">
+              <i class="fas fa-user-slash"></i> Eliminar
               </button></td>
           </tr>
         </tbody>

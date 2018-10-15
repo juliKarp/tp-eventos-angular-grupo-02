@@ -12,21 +12,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>14/10/2018</td>
-      <td>Mi Cumpleaños</td>
-      <td>Mi Casa</td>
-      <td>50</td>
-      <td>30</td>
-      <td>10</td>
-    </tr>
-    <tr>
-      <td>14/10/2018</td>
-      <td>Mi Cumpleaños</td>
-      <td>Mi Casa</td>
-      <td>50</td>
-      <td>30</td>
-      <td>10</td>
+    <tr *ngFor="let evento of eventos">
+      <td>{{evento.fechaDesde}}</td>
+      <td>{{evento.nombre}}</td>
+      <td>{{evento.locacion}}</td>
+      <td>{{evento.invitados}}</td>
+      <td>{{evento.confirmados}}</td>
+      <td>{{evento.rechazados}}</td>
     </tr>
   </tbody>
 </table>

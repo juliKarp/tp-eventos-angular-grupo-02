@@ -1,13 +1,43 @@
 <h5 class="display-5 font-weight-bold">Agenda</h5>
-<div class="modal-content">
-    <div class="modal-body">
-        <h6 class="font-weight-bold">Hoy</h6>
-        <p>Modal body text goes here.</p>
 
-        <h6 class="font-weight-bold">Esta semana</h6>
-        <p>Modal body text goes here.</p>
-
-        <h6 class="font-weight-bold">Próximos</h6>
-        <p>Modal body text goes here.</p>
-    </div>
-</div>
+<table class="table table-hover">
+    <thead>
+        <tr class="table-active">
+            <th scope="col" colspan="4">Hoy</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let evento of eventos">
+            <td>{{evento.fechaDesde}}</td>
+            <td>{{evento.nombre}}</td>
+            <td>{{evento.locacion}}</td>
+            <td>{{evento.organizador.nombreApellido}}</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr class="table-active">
+            <th scope="col" colspan="4">Esta semana</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let evento of eventos">
+            <td>{{evento.fechaDesde}}</td>
+            <td>{{evento.nombre}}</td>
+            <td>{{evento.locacion}}</td>
+            <td>{{evento.organizador.nombreApellido}}</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr class="table-active">
+            <th scope="col" colspan="4">Próximos</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let evento of eventos">
+            <td>{{evento.fechaDesde}}</td>
+            <td>{{evento.nombre}}</td>
+            <td>{{evento.locacion}}</td>
+            <td>{{evento.organizador.nombreApellido}}</td>
+        </tr>
+    </tbody>
+</table>

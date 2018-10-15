@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Usuario from '../../domain/usuario';
+import { EventoService } from '../../services/evento.service';
 
 @Component({
   selector: 'app-perfil',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilComponent implements OnInit {
 
-  constructor() { }
+  usuario: Usuario
+
+  constructor(private eventoService: EventoService) { }
 
   ngOnInit() {
+    this.usuario = this.eventoService.usuario
+  }
+
+  eliminarAmigo(amigo: Usuario) {
+    this.eventoService.eliminarAmigo(amigo)
   }
 
 }
