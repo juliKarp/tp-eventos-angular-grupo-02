@@ -16,16 +16,26 @@ export class EventoService {
     constructor() {
         const jsonUsuario = { "nombreUsuario": "martin1990", "nombreApellido": "Martín Varela", "email": "martinvarela90@yahoo.com", "tipoDeUsuario": "Usuario Free", "amigos": [{ "nombreUsuario": "usuarioMejorAmigo", "nombreApellido": "Mejor amigo" }, { "nombreUsuario": "elotroamigo", "nombreApellido": "Otro Amigo" }] }
         this.usuario = new Usuario(jsonUsuario)
-        const jsonAgenda = [{ "nombre": "La Fiesta", "fechaDesde": formatDate(new Date, this.FORMATO_FECHA_HORA, "en-US"), "locacion": "Casa de Fiesta", "organizador": { "nombreUsuario": "usuarioMejorAmigo", "nombreApellido": "Mejor amigo" } }, { "nombre": "Mi Cumpleaños", "fechaDesde": formatDate((new Date).setDate((new Date).getDate() + 3), this.FORMATO_FECHA_HORA, "en-US"), "locacion": "Mi Casa", "organizador": { "nombreUsuario": "martin1990", "nombreApellido": "Martín Varela" } }]
+
+        const jsonAgenda = [
+            { "nombre": "La Fiesta", "fechaDesde": formatDate(new Date, this.FORMATO_FECHA_HORA, "en-US"), "locacion": "Casa de Fiesta", "organizador": { "nombreUsuario": "usuarioMejorAmigo", "nombreApellido": "Mejor amigo" } },
+            { "nombre": "Mi Cumpleaños", "fechaDesde": formatDate((new Date).setDate((new Date).getDate() + 3), this.FORMATO_FECHA_HORA, "en-US"), "locacion": "Mi Casa", "organizador": { "nombreUsuario": "martin1990", "nombreApellido": "Martín Varela" } }
+        ]
         this.eventosAgenda = jsonAgenda.map(jsonEvento =>
             new Evento(jsonEvento)
         );
 
-        const jsonOrganizados = [{ "nombre": "Mi Cumpleaños", "fechaDesde": formatDate((new Date).setDate((new Date).getDate() + 3), this.FORMATO_FECHA_HORA, "en-US"), "locacion": "Mi Casa", "invitados": 3, "confirmados": 0, "rechazados": 3}, { "nombre": "Mi Cumpleaños Proximo", "fechaDesde": formatDate((new Date).setDate((new Date).getDate() + 368), this.FORMATO_FECHA_HORA, "en-US"), "locacion": "Mi Casa", "invitados": 50000, "confirmados": 1, "rechazados": 2}]
+        const jsonOrganizados = [
+            { "nombre": "Mi Cumpleaños", "fechaDesde": formatDate((new Date).setDate((new Date).getDate() + 3), this.FORMATO_FECHA_HORA, "en-US"), "locacion": "Mi Casa", "invitados": 3, "confirmados": 0, "rechazados": 3 },
+            { "nombre": "Mi Cumpleaños Proximo", "fechaDesde": formatDate((new Date).setDate((new Date).getDate() + 368), this.FORMATO_FECHA_HORA, "en-US"), "locacion": "Mi Casa", "invitados": 50000, "confirmados": 1, "rechazados": 2 }
+        ]
         this.eventosOrganizados = jsonOrganizados.map(jsonEvento =>
             new Evento(jsonEvento)
         );
 
+        this.invitacionesPendientes = this.eventosAgenda.map(evento =>
+            new Invitacion(evento, 4)
+        );
     }
 
     eliminarAmigo(eliminado: Usuario): void {

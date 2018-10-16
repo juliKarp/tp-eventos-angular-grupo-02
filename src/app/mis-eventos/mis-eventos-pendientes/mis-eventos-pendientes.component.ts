@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EventoService } from '../../../services/evento.service';
+import Invitacion from '../../../domain/invitacion';
 
 @Component({
   selector: 'app-mis-eventos-pendientes',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MisEventosPendientesComponent implements OnInit {
 
-  constructor() { }
+  invitaciones: Invitacion[]
+  
+  constructor(private eventoService: EventoService) { }
 
   ngOnInit() {
+    this.invitaciones = this.eventoService.invitacionesPendientes
   }
 
 }

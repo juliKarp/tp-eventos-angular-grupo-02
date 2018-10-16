@@ -11,12 +11,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>14/10/2018</td>
-      <td>Mi Cumpleaños</td>
-      <td>Mi Casa</td>
-      <td>Yo</td>
-      <td>5</td>
+    <tr *ngFor="let invitacion of invitaciones">
+      <td>{{invitacion.evento.fechaDesde}}</td>
+      <td>{{invitacion.evento.nombre}}</td>
+      <td>{{invitacion.evento.locacion}}</td>
+      <td>{{invitacion.evento.orgenizador}}</td>
+      <td>{{invitacion.acompaniantes}}</td>
       <td><button type="button" class="btn btn-success btn-sm">
           <i class="fas fa-calendar-check"></i>
         </button>
@@ -24,14 +24,6 @@
           <i class="fas fa-calendar-times"></i>
         </button>
       </td>
-    </tr>
-    <tr>
-      <td>14/10/2018</td>
-      <td>Mi Cumpleaños</td>
-      <td>Mi Casa</td>
-      <td>Yo</td>
-      <td>5</td>
-      <td>v/ X</td>
     </tr>
   </tbody>
 </table>
