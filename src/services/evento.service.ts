@@ -22,7 +22,7 @@ export class EventoService {
             { "nombre": "Mi Cumpleaños", "fechaDesde": formatDate((new Date).setDate((new Date).getDate() + 3), this.FORMATO_FECHA_HORA, "en-US"), "locacion": "Mi Casa", "organizador": { "nombreUsuario": "martin1990", "nombreApellido": "Martín Varela" } }
         ]
         this.eventosAgenda = jsonAgenda.map(jsonEvento =>
-            new Evento(jsonEvento)
+            Evento.jsonToEvento(jsonEvento)
         );
 
         const jsonOrganizados = [
@@ -30,7 +30,7 @@ export class EventoService {
             { "nombre": "Mi Cumpleaños Proximo", "fechaDesde": formatDate((new Date).setDate((new Date).getDate() + 368), this.FORMATO_FECHA_HORA, "en-US"), "locacion": "Mi Casa", "invitados": 50000, "confirmados": 1, "rechazados": 2 }
         ]
         this.eventosOrganizados = jsonOrganizados.map(jsonEvento =>
-            new Evento(jsonEvento)
+            Evento.jsonToEvento(jsonEvento)
         );
 
         this.invitacionesPendientes = this.eventosAgenda.map(evento =>
@@ -43,5 +43,10 @@ export class EventoService {
         if (index != -1) {
             this.usuario.amigos.splice(index, 1)
         }
+    }
+
+    nuevoEventoAbierto(nombre:string,fechaDesde:string,locacion:string) {
+        var evento = new Evento(nombre, fechaDesde, locacion)
+        this.eventosOrganizados.push(evento)
     }
 }

@@ -1,6 +1,7 @@
 import Usuario from "./usuario";
 
 export default class Evento {
+    cerrado: boolean
     nombre: string
     fechaDesde: string
     locacion: string
@@ -9,15 +10,20 @@ export default class Evento {
     rechazados: number
     organizador: Usuario
 
-    constructor(json:any) {
-        this.nombre = json.nombre
-        this.fechaDesde = json.fechaDesde
-        this.locacion = json.locacion
-        this.invitados = json.invitados
-        this.confirmados = json.confirmados
-        this.rechazados = json.rechazados
+    constructor(nombre:string,fechaDesde:string,locacion:string) {
+        this.nombre = nombre
+        this.fechaDesde = fechaDesde
+        this.locacion = locacion
+    }
+
+    static jsonToEvento(json: any): Evento {
+        const evento = new Evento(json.nombre, json.fechaDesde, json.locacion)
+        evento.invitados = json.invitados
+        evento.confirmados = json.confirmados
+        evento.rechazados = json.rechazados
         if (json.organizador) {
-            this.organizador = new Usuario(json.organizador)
+            evento.organizador = new Usuario(json.organizador)
         }
+        return evento
     }
 }

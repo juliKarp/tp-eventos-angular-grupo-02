@@ -12,6 +12,7 @@ import { NuevoEventoCerradoComponent } from './mis-eventos/mis-eventos-organizad
 
 import { RoutingRoutes } from './app.routing';
 import { PerfilComponent } from './perfil/perfil.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import { PerfilComponent } from './perfil/perfil.component';
         NuevoEventoCerradoComponent,
     ],
     imports: [
+        FormsModule,
         BrowserModule,
         RoutingRoutes
     ],

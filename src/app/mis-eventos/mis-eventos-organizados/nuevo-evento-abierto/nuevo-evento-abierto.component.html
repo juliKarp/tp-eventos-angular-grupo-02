@@ -7,10 +7,23 @@
       </button>
     </div>
     <div class="modal-body">
+      <!-->div>
+      <p>Id</p>
+      <input type="text" id="id" value="{{evento.id}}" readonly>
+      </div-->
+      <div>Nombre
+        <input type="text" id="nombre" [(ngModel)]="nombre">
+      </div>
+      <div>Fecha
+        <input type="text" id="fechaDesde" [(ngModel)]="fechaDesde">
+      </div>
+      <div>Locacion
+        <input type="text" id="locacion" [(ngModel)]="locacion">
+      </div>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-      <button type="button" class="btn btn-primary">Guardar</button>
+      <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="nuevoEvento(evento)">Guardar</button>
     </div>
   </div>
 </div>
