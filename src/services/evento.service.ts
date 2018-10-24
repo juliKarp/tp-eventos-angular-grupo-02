@@ -3,6 +3,8 @@ import Evento from '../domain/evento';
 import Invitacion from '../domain/invitacion';
 import Usuario from '../domain/usuario';
 import { formatDate } from '@angular/common';
+import Locacion from 'src/domain/locacion';
+import { EventoAbierto } from 'src/domain/eventoAbierto';
 
 @Injectable({
     providedIn: 'root'
@@ -12,6 +14,7 @@ export class EventoService {
     eventosAgenda: Evento[] = []
     eventosOrganizados: Evento[] = []
     invitacionesPendientes: Invitacion[] = []
+    locaciones: Locacion[] = []
     readonly FORMATO_FECHA_HORA: string = "dd/MM/yyyy HH:mm"
     constructor() {
         const jsonUsuario = { "nombreUsuario": "martin1990", "nombreApellido": "Martín Varela", "email": "martinvarela90@yahoo.com", "tipoDeUsuario": "Usuario Free", "amigos": [{ "nombreUsuario": "usuarioMejorAmigo", "nombreApellido": "Mejor amigo" }, { "nombreUsuario": "elotroamigo", "nombreApellido": "Otro Amigo" }] }
@@ -36,6 +39,14 @@ export class EventoService {
         this.invitacionesPendientes = this.eventosAgenda.map(evento =>
             new Invitacion(evento, 4)
         );
+
+        const jsonLocaciones = [
+            { "x": -34.603759, "y": -58.381586, "nombre": "Salón El Abierto" },
+            { "x": -34.572224, "y": -58.535651, "nombre": "Estadio Obras" }
+        ]
+        this.locaciones = jsonLocaciones.map(jsonLocacion =>
+            Locacion.jsonToLocacion(jsonLocacion)
+        )
     }
 
     eliminarAmigo(eliminado: Usuario): void {
@@ -45,8 +56,10 @@ export class EventoService {
         }
     }
 
-    nuevoEventoAbierto(nombre:string,fechaDesde:string,locacion:string) {
-        var evento = new Evento(nombre, fechaDesde, locacion)
+    crearEventoAbierto(nombre: string, fechaMaximaConfirmacion: Date, fechaDesde: Date, fechaHasta: Date, locacion: Locacion, precio: number, edadMinima: number) : EventoAbierto {
+        return new EventoAbierto(nombre, fechaMaximaConfirmacion, fechaDesde, fechaHasta, locacion, precio, edadMinima)
+    }
+    agregarEvento(evento:Evento) {
         this.eventosOrganizados.push(evento)
     }
 }

@@ -11,19 +11,34 @@
       <p>Id</p>
       <input type="text" id="id" value="{{evento.id}}" readonly>
       </div-->
-      <div>Nombre
-        <input type="text" id="nombre" [(ngModel)]="nombre">
-      </div>
-      <div>Fecha
-        <input type="text" id="fechaDesde" [(ngModel)]="fechaDesde">
-      </div>
-      <div>Locacion
-        <input type="text" id="locacion" [(ngModel)]="locacion">
-      </div>
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" [(ngModel)]="nombre" placeholder="Nombre del evento">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputLocacion">Locacion</label>
+            <select id="inputLocacion" name="inputLocacion" class="form-control" [(ngModel)]="locacion" required="true">
+              <option *ngFor="let locacion of locacionesDisponibles" [ngValue]="locacion">{{locacion.nombre}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="fechaDesde">Inicio</label>
+            <!--angular2-date-picker id="fechaDesde" [(ngModel)]="fechaDesde"></angular2-date-picker-->
+          </div>
+          <div class="form-group col-md-6">
+            <label for="fechaHasta">Fin</label>
+            <!-->angular2-date-picker id="fechaHasta" [(ngModel)]="fechaHasta"></angular2-date-picker-->
+          </div>
+        </div>
+      </form>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-      <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="nuevoEvento(evento)">Guardar</button>
+      <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="nuevoEvento(evento)">Guardar</button>
     </div>
   </div>
 </div>
