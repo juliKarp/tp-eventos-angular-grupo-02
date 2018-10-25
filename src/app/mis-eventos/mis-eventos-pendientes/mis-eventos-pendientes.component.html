@@ -14,8 +14,8 @@
     <tr *ngFor="let invitacion of invitaciones">
       <td>{{invitacion.evento.fechaDesde}}</td>
       <td>{{invitacion.evento.nombre}}</td>
-      <td>{{invitacion.evento.locacion}}</td>
-      <td>{{invitacion.evento.orgenizador}}</td>
+      <td>{{invitacion.evento.locacion.nombre}}</td>
+      <td>{{invitacion.evento.organizador.nombreApellido}}</td>
       <td>{{invitacion.acompaniantes}}</td>
       <td><button type="button" class="btn btn-success btn-sm">
           <i class="fas fa-calendar-check"></i>

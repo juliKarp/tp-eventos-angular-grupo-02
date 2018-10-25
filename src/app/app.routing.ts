@@ -4,8 +4,7 @@ import { MisEventosOrganizadosComponent } from './mis-eventos/mis-eventos-organi
 import { MisEventosPendientesComponent } from './mis-eventos/mis-eventos-pendientes/mis-eventos-pendientes.component';
 import { MisEventosComponent } from './mis-eventos/mis-eventos.component';
 import { PerfilComponent } from './perfil/perfil.component';
-import { NuevoEventoAbiertoComponent } from './mis-eventos/mis-eventos-organizados/nuevo-evento-abierto/nuevo-evento-abierto.component';
-import { NuevoEventoCerradoComponent } from './mis-eventos/mis-eventos-organizados/nuevo-evento-cerrado/nuevo-evento-cerrado.component';
+import { NuevoEventoComponent } from './mis-eventos/mis-eventos-organizados/nuevo-evento/nuevo-evento.component';
 
 const routes: Routes = [
   {
@@ -24,12 +23,8 @@ const routes: Routes = [
         component: MisEventosOrganizadosComponent,
         children: [
           {
-            path: 'nuevoEventoCerrado',
-            component: NuevoEventoCerradoComponent
-          },
-          {
-            path: 'nuevoEventoAbierto',
-            component: NuevoEventoAbiertoComponent
+            path: 'nuevoEvento',
+            component: NuevoEventoComponent
           },
         ]
       },

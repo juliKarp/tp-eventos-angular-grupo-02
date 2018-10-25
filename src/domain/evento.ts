@@ -4,16 +4,18 @@ import * as moment from 'moment';
 import { Moment } from 'moment';
 
 export default class Evento {
+
     static readonly FORMATO_FECHA_HORA: string = "DD/MM/YYYY HH:mm"
     id: number
-    nombre: string
-    fechaMaximaConfirmacion: Moment
-    fechaDesde: Moment
-    fechaHasta: Moment
-    locacion: Locacion
-    cancelado: boolean = false
-    postergado: boolean = false
-    organizador: Usuario
+    nombre : string
+	fechaMaximaConfirmacion : Moment
+	fechaDesde : Moment
+	fechaHasta : Moment
+	locacion : Locacion
+    organizador : Usuario
+    invitados : number
+    confirmados: number
+    rechazados: number
 
     constructor() { }
 
@@ -26,7 +28,6 @@ export default class Evento {
         evento.fechaHasta = moment(json.fechaHasta, this.FORMATO_FECHA_HORA)
         evento.locacion = json.locacion
         evento.organizador = Usuario.fromJson(json.organizador)
-        console.log(evento);
         return evento
     }
 }

@@ -4,8 +4,7 @@ import Invitacion from '../../../domain/invitacion';
 
 @Component({
   selector: 'app-mis-eventos-pendientes',
-  templateUrl: './mis-eventos-pendientes.component.html',
-  styleUrls: ['./mis-eventos-pendientes.component.css']
+  templateUrl: './mis-eventos-pendientes.component.html'
 })
 export class MisEventosPendientesComponent implements OnInit {
 
