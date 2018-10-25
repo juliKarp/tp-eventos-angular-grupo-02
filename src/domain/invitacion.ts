@@ -8,4 +8,10 @@ export default class Invitacion {
         this.evento = evento
         this.acompaniantes = acompaniantes
     }
+
+    static fromJson(json:any) : Invitacion {
+        if (!json) {return}
+        const invitacion = new Invitacion(Evento.fromJson(json.evento), json.acompaniantes)
+        return invitacion
+    }
 }

@@ -9,7 +9,8 @@ export default class Locacion {
         this.ubicacionY = y
     }
 
-    static jsonToLocacion(jsonLocacion:any): Locacion {
+    static fromJson(jsonLocacion:any): Locacion {
+        if (!jsonLocacion) {return}
         return new Locacion(jsonLocacion.nombre,jsonLocacion.x,jsonLocacion.y)
     }
 }

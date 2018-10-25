@@ -1,29 +1,32 @@
 import Usuario from "./usuario";
 import Locacion from "./locacion";
+import * as moment from 'moment';
+import { Moment } from 'moment';
 
 export default class Evento {
-    nombre : string
-	fechaMaximaConfirmacion : Date
-	fechaDesde : Date
-	fechaHasta : Date
-	locacion : Locacion
-	cancelado : boolean = false
-    postergado : boolean = false
-    organizador : Usuario
+    static readonly FORMATO_FECHA_HORA: string = "DD/MM/YYYY HH:mm"
+    id: number
+    nombre: string
+    fechaMaximaConfirmacion: Moment
+    fechaDesde: Moment
+    fechaHasta: Moment
+    locacion: Locacion
+    cancelado: boolean = false
+    postergado: boolean = false
+    organizador: Usuario
 
-    constructor(nombre:string,fechaMaximaConfirmacion:Date,fechaDesde:Date,fechaHasta:Date,locacion:Locacion) {
-        this.nombre = nombre
-        this.fechaMaximaConfirmacion = fechaMaximaConfirmacion
-        this.fechaDesde = fechaDesde
-        this.fechaHasta = fechaHasta
-        this.locacion = locacion
-    }
+    constructor() { }
 
-    static jsonToEvento(json: any): Evento {
-        const evento = new Evento(json.nombre, json.fechaConfirmacion, json.fechaDesde, json.fechaHasta, json.locacion)
-        if (json.organizador) {
-            evento.organizador = new Usuario(json.organizador)
-        }
+    static fromJson(json: any): Evento {
+        if (!json) { return }
+        const evento = new Evento()
+        evento.nombre = json.nombre
+        evento.fechaMaximaConfirmacion = moment(json.fechaMaximaConfirmacion, this.FORMATO_FECHA_HORA)
+        evento.fechaDesde = moment(json.fechaDesde, this.FORMATO_FECHA_HORA)
+        evento.fechaHasta = moment(json.fechaHasta, this.FORMATO_FECHA_HORA)
+        evento.locacion = json.locacion
+        evento.organizador = Usuario.fromJson(json.organizador)
+        console.log(evento);
         return evento
     }
 }

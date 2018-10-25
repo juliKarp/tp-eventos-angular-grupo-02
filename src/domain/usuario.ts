@@ -5,16 +5,21 @@ export default class Usuario {
     tipoDeUsuario: string
     amigos: Usuario[] = []
 
-    constructor(json:any) {
-        this.nombreUsuario = json.nombreUsuario
-        this.nombreApellido = json.nombreApellido
-        this.email = json.email
-        this.tipoDeUsuario = json.tipoDeUsuario
+    constructor() {}
+
+    static fromJson(json: any): Usuario {
+        if (!json) {return}
+        const usuario = new Usuario()
+        usuario.nombreUsuario = json.nombreUsuario
+        usuario.nombreApellido = json.nombreApellido
+        usuario.email = json.email
+        usuario.tipoDeUsuario = json.tipoDeUsuario
         if (json.amigos) {
-            this.amigos = json.amigos.map(amigo => 
-                new Usuario(amigo)
+            usuario.amigos = json.amigos.map(amigo => 
+                Usuario.fromJson(amigo)
             );
         }
+        return usuario
     }
 
     get cantidadAmigos(): number {
