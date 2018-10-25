@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let invitacion of invitaciones">
-      <td>{{invitacion.evento.fechaDesde}}</td>
+      <td>{{invitacion.evento.fechaDesde | date: 'short' }}</td>
       <td>{{invitacion.evento.nombre}}</td>
       <td>{{invitacion.evento.locacion.nombre}}</td>
       <td>{{invitacion.evento.organizador.nombreApellido}}</td>
