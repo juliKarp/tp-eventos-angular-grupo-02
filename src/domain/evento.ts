@@ -8,15 +8,9 @@ export default class Evento {
     static readonly FORMATO_FECHA_HORA: string = "DD/MM/YYYY HH:mm"
     id: number
     nombre : string
-<<<<<<< HEAD
 	fechaMaximaConfirmacion : Moment
 	fechaDesde : Moment
 	fechaHasta : Moment
-=======
-	fechaMaximaConfirmacion : string
-	fechaDesde : string
-	fechaHasta : string
->>>>>>> e09ce045010d5fd9007ad88d957056c7a2e3c50d
 	locacion : Locacion
     organizador : Usuario
     invitados : number
