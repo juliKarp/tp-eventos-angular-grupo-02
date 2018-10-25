@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { EventoService } from '../../../../services/evento.service';
 import Locacion from 'src/domain/locacion';
 import Usuario from 'src/domain/usuario';
-import { Moment } from 'moment';
-import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-nuevo-evento',
@@ -15,9 +13,9 @@ export class NuevoEventoComponent implements OnInit {
   fechaMaximaConfirmacion: Date
   fechaDesde: Date
   fechaHasta: Date
-  horaMaximaConfirmacion: Time
-  horaDesde: Time
-  horaHasta: Time
+  horaMaximaConfirmacion: string
+  horaDesde: string
+  horaHasta: string
   locacion: Locacion
   organizador: Usuario
 
@@ -27,6 +25,9 @@ export class NuevoEventoComponent implements OnInit {
 
   ngOnInit() {
     this.locacionesDisponibles = this.eventoService.locaciones
+    this.horaMaximaConfirmacion = "12:00"
+    this.horaDesde = "12:00"
+    this.horaHasta = "12:00"
   }
 
   nuevoEvento() {
@@ -42,6 +43,9 @@ export class NuevoEventoComponent implements OnInit {
     this.fechaHasta = null
     this.locacion = null
     this.organizador = null
+    this.horaMaximaConfirmacion = "12:00"
+    this.horaDesde = "12:00"
+    this.horaHasta = "12:00"
   }
 
 }

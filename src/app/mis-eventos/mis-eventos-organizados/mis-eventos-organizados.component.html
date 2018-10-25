@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let evento of eventos">
-      <td>{{evento.fechaDesde | date: 'short' }}</td>
+      <td>{{evento.fechaDesde | date: formatoFecha }}</td>
       <td>{{evento.nombre}}</td>
       <td>{{evento.locacion.nombre}}</td>
       <td>{{evento.invitados}}</td>
