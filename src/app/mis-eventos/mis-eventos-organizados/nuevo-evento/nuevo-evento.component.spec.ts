@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { NuevoEventoCerradoComponent } from './nuevo-evento-cerrado.component';
+import { NuevoEventoComponent } from './nuevo-evento.component';
 
-describe('NuevoEventoCerradoComponent', () => {
-  let component: NuevoEventoCerradoComponent;
-  let fixture: ComponentFixture<NuevoEventoCerradoComponent>;
+describe('NuevoEventoComponent', () => {
+  let component: NuevoEventoComponent;
+  let fixture: ComponentFixture<NuevoEventoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NuevoEventoCerradoComponent ]
+      declarations: [ NuevoEventoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NuevoEventoCerradoComponent);
+    fixture = TestBed.createComponent(NuevoEventoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

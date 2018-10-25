@@ -3,15 +3,16 @@ import Locacion from "./locacion";
 
 export default class Evento {
     nombre : string
-	fechaMaximaConfirmacion : Date
-	fechaDesde : Date
-	fechaHasta : Date
+	fechaMaximaConfirmacion : string
+	fechaDesde : string
+	fechaHasta : string
 	locacion : Locacion
-	cancelado : boolean = false
-    postergado : boolean = false
     organizador : Usuario
+    invitados : number
+    confirmados: number
+    rechazados: number
 
-    constructor(nombre:string,fechaMaximaConfirmacion:Date,fechaDesde:Date,fechaHasta:Date,locacion:Locacion) {
+    constructor(nombre:string,fechaMaximaConfirmacion:string,fechaDesde:string,fechaHasta:string,locacion:Locacion) {
         this.nombre = nombre
         this.fechaMaximaConfirmacion = fechaMaximaConfirmacion
         this.fechaDesde = fechaDesde
@@ -22,8 +23,11 @@ export default class Evento {
     static jsonToEvento(json: any): Evento {
         const evento = new Evento(json.nombre, json.fechaConfirmacion, json.fechaDesde, json.fechaHasta, json.locacion)
         if (json.organizador) {
-            evento.organizador = new Usuario(json.organizador)
+            evento.organizador = json.organizador // aparentemente convierte solo el json a usuario...
         }
+        evento.invitados = json.invitados
+        evento.confirmados = json.confirmados
+        evento.rechazados = json.rechazados
         return evento
     }
 }

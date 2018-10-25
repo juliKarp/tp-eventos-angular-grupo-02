@@ -4,8 +4,7 @@ import Evento from '../../../domain/evento';
 
 @Component({
   selector: 'app-mis-eventos-organizados',
-  templateUrl: './mis-eventos-organizados.component.html',
-  styleUrls: ['./mis-eventos-organizados.component.css']
+  templateUrl: './mis-eventos-organizados.component.html'
 })
 export class MisEventosOrganizadosComponent implements OnInit {
 
