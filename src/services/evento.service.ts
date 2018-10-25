@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import Evento from '../domain/evento';
 import Invitacion from '../domain/invitacion';
 import Usuario from '../domain/usuario';
-import { formatDate } from '@angular/common';
+import { formatDate, Time } from '@angular/common';
 import Locacion from 'src/domain/locacion';
 import { EventoAbierto } from 'src/domain/eventoAbierto';
 import { EventoCerrado } from 'src/domain/eventoCerrado';
-import { Moment } from 'moment';
 
 @Injectable({
     providedIn: 'root'
@@ -61,8 +60,8 @@ export class EventoService {
         }
     }
 
-    crearEventoAbierto(nombre: string, fechaMaximaConfirmacion: Date, fechaDesde: Date, fechaHasta: Date, locacion: Locacion): EventoAbierto {
-        return new EventoAbierto(nombre, fechaMaximaConfirmacion, fechaDesde, fechaHasta, locacion)
+    crearEventoAbierto(nombre: string, fechaMaximaConfirmacion: Date, fechaDesde: Date, fechaHasta: Date, horaMaximaConfirmacion: Time, horaDesde: Time, horaHasta: Time, locacion: Locacion): EventoAbierto {
+        return new EventoAbierto(nombre, fechaMaximaConfirmacion, fechaDesde, fechaHasta, horaMaximaConfirmacion, horaDesde, horaHasta, locacion)
     }
 
     crearEventoCerrado(nombre: string, fechaMaximaConfirmacion: Date, fechaDesde: Date, fechaHasta: Date, locacion: Locacion): EventoAbierto {

@@ -30,7 +30,7 @@ export class NuevoEventoComponent implements OnInit {
   }
 
   nuevoEvento() {
-    const evento = this.eventoService.crearEventoAbierto(this.nombre, this.fechaMaximaConfirmacion, this.fechaDesde, this.fechaHasta, this.locacion)
+    const evento = this.eventoService.crearEventoAbierto(this.nombre, this.fechaMaximaConfirmacion, this.fechaDesde, this.fechaHasta,this.horaMaximaConfirmacion, this.horaDesde, this.horaHasta, this.locacion)
     this.eventoService.agregarEvento(evento)
     this.limpiarCampos()
   }

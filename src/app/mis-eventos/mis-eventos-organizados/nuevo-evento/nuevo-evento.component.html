@@ -25,20 +25,31 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-3">
             <label for="fechaDesde">Inicio</label>
-            <input type="date" class="form-control" name="fechaDesde" [(ngModel)]="fechaDesde" placeholder="dd/mm/aaaa hh:mm">
+            <input type="date" class="form-control" name="fechaDesde" [(ngModel)]="fechaDesde">
           </div>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-3">
+            <label for="horaDesde">Hora</label>
+            <input type="time" class="form-control" name="horaDesde" [(ngModel)]="horaDesde">
+          </div>
+          <div class="form-group col-md-3">
             <label for="fechaHasta">Fin</label>
-            <input type="date" class="form-control" name="fechaHasta" [(ngModel)]="fechaHasta" placeholder="dd/mm/aaaa hh:mm">
+            <input type="date" class="form-control" name="fechaHasta" [(ngModel)]="fechaHasta">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="horaHasta">Hora</label>
+            <input type="time" class="form-control" name="horaHasta" [(ngModel)]="horaHasta">
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-3">
             <label for="fechaMaximaConfirmacion">Fecha máxima confirmación</label>
-            <input type="date" class="form-control" name="fechaMaximaConfirmacion" [(ngModel)]="fechaMaximaConfirmacion"
-              placeholder="dd/mm/aaaa hh:mm">
+            <input type="date" class="form-control" name="fechaMaximaConfirmacion" [(ngModel)]="fechaMaximaConfirmacion">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="horaMaximaConfirmacion">Hora</label>
+            <input type="time" class="form-control" name="horaMaximaConfirmacion" [(ngModel)]="horaMaximaConfirmacion">
           </div>
         </div>
       </form>
