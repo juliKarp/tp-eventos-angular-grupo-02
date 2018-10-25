@@ -8,9 +8,15 @@ export default class Evento {
     static readonly FORMATO_FECHA_HORA: string = "DD/MM/YYYY HH:mm"
     id: number
     nombre : string
+<<<<<<< HEAD
 	fechaMaximaConfirmacion : Moment
 	fechaDesde : Moment
 	fechaHasta : Moment
+=======
+	fechaMaximaConfirmacion : string
+	fechaDesde : string
+	fechaHasta : string
+>>>>>>> e09ce045010d5fd9007ad88d957056c7a2e3c50d
 	locacion : Locacion
     organizador : Usuario
     invitados : number
@@ -26,7 +32,7 @@ export default class Evento {
         evento.fechaMaximaConfirmacion = moment(json.fechaMaximaConfirmacion, this.FORMATO_FECHA_HORA)
         evento.fechaDesde = moment(json.fechaDesde, this.FORMATO_FECHA_HORA)
         evento.fechaHasta = moment(json.fechaHasta, this.FORMATO_FECHA_HORA)
-        evento.locacion = json.locacion
+        evento.locacion = Locacion.fromJson(json.locacion)
         evento.organizador = Usuario.fromJson(json.organizador)
         return evento
     }
