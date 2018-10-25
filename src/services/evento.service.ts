@@ -6,6 +6,7 @@ import { formatDate } from '@angular/common';
 import Locacion from 'src/domain/locacion';
 import { EventoAbierto } from 'src/domain/eventoAbierto';
 import { EventoCerrado } from 'src/domain/eventoCerrado';
+import { Moment } from 'moment';
 
 @Injectable({
     providedIn: 'root'
@@ -60,11 +61,11 @@ export class EventoService {
         }
     }
 
-    crearEventoAbierto(nombre: string, fechaMaximaConfirmacion: string, fechaDesde: string, fechaHasta: string, locacion: Locacion): EventoAbierto {
+    crearEventoAbierto(nombre: string, fechaMaximaConfirmacion: Date, fechaDesde: Date, fechaHasta: Date, locacion: Locacion): EventoAbierto {
         return new EventoAbierto(nombre, fechaMaximaConfirmacion, fechaDesde, fechaHasta, locacion)
     }
 
-    crearEventoCerrado(nombre: string, fechaMaximaConfirmacion: string, fechaDesde: string, fechaHasta: string, locacion: Locacion): EventoAbierto {
+    crearEventoCerrado(nombre: string, fechaMaximaConfirmacion: Date, fechaDesde: Date, fechaHasta: Date, locacion: Locacion): EventoAbierto {
         return new EventoCerrado(nombre, fechaMaximaConfirmacion, fechaDesde, fechaHasta, locacion)
     }
 
