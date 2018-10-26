@@ -2,12 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { EventoService } from '../../../../services/evento.service';
 import Locacion from 'src/domain/locacion';
 import Usuario from 'src/domain/usuario';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-nuevo-evento',
   templateUrl: './nuevo-evento.component.html'
 })
 export class NuevoEventoComponent implements OnInit {
+  today() :string {
+    return moment().format("YYYY-MM-DD")
+  }
+
+  minHasta() :string {
+    return moment(this.fechaDesde).format("YYYY-MM-DD")
+  }
 
   nombre: string
   fechaMaximaConfirmacion: Date

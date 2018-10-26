@@ -11,4 +11,5 @@ export default class FechaUtils {
         const tiempo = moment(horaMinuto, this.FORMATO_HORA_MOMENT)
         return moment(fecha).hour(tiempo.hour()).minute(tiempo.minute())
     }
+    
 }

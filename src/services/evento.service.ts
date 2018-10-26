@@ -23,7 +23,7 @@ export class EventoService {
         this.usuario = Usuario.fromJson(jsonUsuario)
 
         const jsonAgenda = [
-            { "nombre": "Evento de hoy", "fechaDesde": "24/10/2018", "locacion": { "x": -34.603759, "y": -58.381586, "nombre": "Salón El Abierto" }, "organizador": { "nombreUsuario": "usuarioMejorAmigo", "nombreApellido": "Mejor amigo" } },
+            { "nombre": "Evento de hoy", "fechaDesde": formatDate(new Date, FechaUtils.FORMATO_FECHA_HORA_DATE, "en-US"), "locacion": { "x": -34.603759, "y": -58.381586, "nombre": "Salón El Abierto" }, "organizador": { "nombreUsuario": "usuarioMejorAmigo", "nombreApellido": "Mejor amigo" } },
             { "nombre": "La Fiesta", "fechaDesde": formatDate(new Date, FechaUtils.FORMATO_FECHA_HORA_DATE, "en-US"), "locacion": { "x": -34.603759, "y": -58.381586, "nombre": "Bolichito" }, "organizador": { "nombreUsuario": "usuarioMejorAmigo", "nombreApellido": "Mejor amigo" } },
             { "nombre": "Evento futuro", "fechaDesde": formatDate((new Date).setDate((new Date).getDate() + 30), FechaUtils.FORMATO_FECHA_HORA_DATE, "en-US"), "locacion": { "x": -34.603759, "y": -58.381586, "nombre": "Bolichito" }, "organizador": { "nombreUsuario": "usuarioMejorAmigo", "nombreApellido": "Mejor amigo" } },
             { "nombre": "Mi Cumpleaños", "fechaDesde": formatDate((new Date).setDate((new Date).getDate() + 3), FechaUtils.FORMATO_FECHA_HORA_DATE, "en-US"), "locacion": { "x": -34.603759, "y": -58.381586, "nombre": "Salón El Abierto" }, "organizador": { "nombreUsuario": "martin1990", "nombreApellido": "Martín Varela" } }
