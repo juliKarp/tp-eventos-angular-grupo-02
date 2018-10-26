@@ -45,7 +45,7 @@
         <div class="form-row">
           <div class="form-group col-md-3">
             <label for="fechaMaximaConfirmacion">Fecha máxima confirmación</label>
-            <input type="date" class="form-control" name="fechaMaximaConfirmacion" [(ngModel)]="fechaMaximaConfirmacion">
+            <input type="date" [min]="today()" [max]="minHasta()" class="form-control" name="fechaMaximaConfirmacion" [(ngModel)]="fechaMaximaConfirmacion">
           </div>
           <div class="form-group col-md-3">
             <label for="horaMaximaConfirmacion">Hora</label>
