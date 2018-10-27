@@ -22,8 +22,8 @@
     </tr>
   </tbody>
 </table>
-<button type="button" class="btn btn-primary btn-sm m-2" [routerLink]="'/eventos/organizados/nuevoEvento'" routerLinkActive="active" data-toggle="modal" data-target="#nuevoEvento">Nuevo Evento Abierto</button>
-<button type="button" class="btn btn-primary btn-sm m-2" [routerLink]="'/eventos/organizados/nuevoEvento'" routerLinkActive="active" data-toggle="modal" data-target="#nuevoEvento">Nuevo Evento Cerrado</button>
+<button type="button" class="btn btn-primary btn-sm m-2" [routerLink]="'/eventos/organizados/nuevoEvento/abierto'" routerLinkActive="active" data-toggle="modal" data-target="#nuevoEvento">Nuevo Evento Abierto</button>
+<button type="button" class="btn btn-primary btn-sm m-2" [routerLink]="'/eventos/organizados/nuevoEvento/cerrado'" routerLinkActive="active" data-toggle="modal" data-target="#nuevoEvento">Nuevo Evento Cerrado</button>
 <div class="modal fade" id="nuevoEvento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <router-outlet></router-outlet>
 </div>

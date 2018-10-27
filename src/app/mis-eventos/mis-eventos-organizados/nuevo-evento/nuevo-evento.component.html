@@ -7,7 +7,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <!-->div>
+      <!--div>
       <p>Id</p>
       <input type="text" id="id" value="{{evento.id}}" readonly>
       </div-->
@@ -15,46 +15,40 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" name="nombre" [(ngModel)]="nombre" placeholder="Nombre del evento">
+            <input type="text" class="form-control" name="nombre" [(ngModel)]="evento.nombre" placeholder="Nombre del evento">
           </div>
           <div class="form-group col-md-6">
             <label for="inputLocacion">Locacion</label>
-            <select name="inputLocacion" class="form-control" [(ngModel)]="locacion" required="true">
+            <select name="inputLocacion" class="form-control" [(ngModel)]="evento.locacion" required="true">
               <option *ngFor="let loc of locacionesDisponibles" [ngValue]="loc">{{loc.nombre}}</option>
             </select>
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-3">
-            <label for="fechaDesde">Inicio</label>
+          <div class="form-group col-md-6">
+            <label for="fechaDesde">Desde</label>
             <input type="date" [min]="today()" class="form-control" name="fechaDesde" [(ngModel)]="fechaDesde">
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-6">
             <label for="horaDesde">Hora</label>
             <input type="time" class="form-control" name="horaDesde" [(ngModel)]="horaDesde">
           </div>
-          <div class="form-group col-md-3">
-            <label for="fechaHasta">Fin</label>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="fechaHasta">Hasta</label>
             <input type="date" [min]="minHasta()" class="form-control" name="fechaHasta" [(ngModel)]="fechaHasta">
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-6">
             <label for="horaHasta">Hora</label>
             <input type="time" class="form-control" name="horaHasta" [(ngModel)]="horaHasta">
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-3">
-            <label for="fechaMaximaConfirmacion">Fecha máxima confirmación</label>
-            <input type="date" [min]="today()" [max]="minHasta()" class="form-control" name="fechaMaximaConfirmacion" [(ngModel)]="fechaMaximaConfirmacion">
-          </div>
-          <div class="form-group col-md-3">
-            <label for="horaMaximaConfirmacion">Hora</label>
-            <input type="time" class="form-control" name="horaMaximaConfirmacion" [(ngModel)]="horaMaximaConfirmacion">
-          </div>
-        </div>
+        <router-outlet></router-outlet>
       </form>
     </div>
     <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="inicializarCampos()">Restablecer</button>
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
       <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="nuevoEvento(evento)">Guardar</button>
     </div>

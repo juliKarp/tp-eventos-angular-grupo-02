@@ -8,6 +8,8 @@ import { MisEventosAgendaComponent } from './mis-eventos/mis-eventos-agenda/mis-
 import { MisEventosOrganizadosComponent } from './mis-eventos/mis-eventos-organizados/mis-eventos-organizados.component';
 import { MisEventosPendientesComponent } from './mis-eventos/mis-eventos-pendientes/mis-eventos-pendientes.component';
 import { NuevoEventoComponent } from './mis-eventos/mis-eventos-organizados/nuevo-evento/nuevo-evento.component';
+import { AbiertoComponent } from './mis-eventos/mis-eventos-organizados/nuevo-evento/abierto/abierto.component';
+import { CerradoComponent } from './mis-eventos/mis-eventos-organizados/nuevo-evento/cerrado/cerrado.component';
 
 import { RoutingRoutes } from './app.routing';
 import { PerfilComponent } from './perfil/perfil.component';
@@ -22,6 +24,8 @@ import { FormsModule } from '@angular/forms';
         MisEventosPendientesComponent,
         PerfilComponent,
         NuevoEventoComponent,
+        AbiertoComponent,
+        CerradoComponent
     ],
     imports: [
         FormsModule,

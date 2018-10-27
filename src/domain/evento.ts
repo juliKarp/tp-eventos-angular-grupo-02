@@ -2,13 +2,12 @@ import Usuario from "./usuario";
 import Locacion from "./locacion";
 import * as moment from 'moment';
 import { Moment } from 'moment';
+import FechaUtils from "src/utils/fechaUtils";
 
 export default class Evento {
 
-    static readonly FORMATO_FECHA_HORA: string = "DD/MM/YYYY HH:mm"
     id: number
     nombre : string
-	fechaMaximaConfirmacion : Moment
 	fechaDesde : Moment
 	fechaHasta : Moment
 	locacion : Locacion
@@ -23,9 +22,8 @@ export default class Evento {
         if (!json) { return }
         const evento = new Evento()
         evento.nombre = json.nombre
-        evento.fechaMaximaConfirmacion = moment(json.fechaMaximaConfirmacion, this.FORMATO_FECHA_HORA)
-        evento.fechaDesde = moment(json.fechaDesde, this.FORMATO_FECHA_HORA)
-        evento.fechaHasta = moment(json.fechaHasta, this.FORMATO_FECHA_HORA)
+        evento.fechaDesde = moment(json.fechaDesde, FechaUtils.FORMATO_FECHA_HORA_MOMENT)
+        evento.fechaHasta = moment(json.fechaHasta, FechaUtils.FORMATO_FECHA_HORA_MOMENT)
         evento.locacion = Locacion.fromJson(json.locacion)
         evento.organizador = Usuario.fromJson(json.organizador)
         return evento

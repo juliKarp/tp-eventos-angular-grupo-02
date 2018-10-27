@@ -8,6 +8,11 @@ import { EventoAbierto } from 'src/domain/eventoAbierto';
 import { EventoCerrado } from 'src/domain/eventoCerrado';
 import FechaUtils from 'src/utils/fechaUtils';
 
+const tiposEvento = {
+    'abierto': new EventoAbierto(),
+    'cerrado': new EventoCerrado()
+  }
+
 @Injectable({
     providedIn: 'root'
 })
@@ -60,15 +65,18 @@ export class EventoService {
         }
     }
 
-    crearEventoAbierto(nombre: string, fechaMaximaConfirmacion: Date, fechaDesde: Date, fechaHasta: Date, horaMaximaConfirmacion: string, horaDesde: string, horaHasta: string, locacion: Locacion): EventoAbierto {
-        return new EventoAbierto(nombre, fechaMaximaConfirmacion, fechaDesde, fechaHasta, horaMaximaConfirmacion, horaDesde, horaHasta, locacion)
-    }
-
-    crearEventoCerrado(nombre: string, fechaMaximaConfirmacion: Date, fechaDesde: Date, fechaHasta: Date, horaMaximaConfirmacion: string, horaDesde: string, horaHasta: string, locacion: Locacion): EventoAbierto {
-        return new EventoCerrado(nombre, fechaMaximaConfirmacion, fechaDesde, fechaHasta, horaMaximaConfirmacion, horaDesde, horaHasta, locacion)
+    crearEvento(tipoEvento: string) : Evento{
+        if(tipoEvento = "abierto"){
+            return new EventoAbierto
+        }else{
+            return new EventoCerrado
+        }
+      //  return tiposEvento[tipoEvento].copy()
+      // TODO: revisar por que tira el siguiente error: tiposEvento[tipoEvento].copy() is not a funcion
     }
 
     agregarEvento(evento: Evento) {
+        console.log("evento pusheado: ", evento)
         this.eventosOrganizados.push(evento)
     }
 }
