@@ -13,8 +13,8 @@ export class MisEventosOrganizadosComponent implements OnInit {
   
   constructor(private eventoService: EventoService) { }
 
-  ngOnInit() {
-    this.eventos = this.eventoService.eventosOrganizados
+  async ngOnInit() {
+    this.eventos = await this.eventoService.organizadosUsuario(this.eventoService.usuarioLogeadoId)
   }
 
 }

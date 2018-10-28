@@ -6,7 +6,7 @@ import FechaUtils from 'src/utils/fechaUtils';
 
 @Component({
     selector: 'app-mis-eventos-agenda',
-    templateUrl: './mis-eventos-agenda.component.html',
+    templateUrl: './mis-eventos-agenda.component.html'
 })
 export class MisEventosAgendaComponent implements OnInit {
     formatoFecha = FechaUtils.FORMATO_FECHA_HORA_DATE
@@ -17,8 +17,8 @@ export class MisEventosAgendaComponent implements OnInit {
 
     constructor(private eventoService: EventoService) { }
     
-    ngOnInit() {
-        this.eventos = this.eventoService.eventosAgenda
+    async ngOnInit() {
+        this.eventos = await this.eventoService.agendaUsuario(this.eventoService.usuarioLogeadoId)
         this.eventosHoy = this.eventos.filter(evento => evento.fechaDesde.isSame(moment(), 'day'))
         this.eventosSemana = this.eventos.filter(evento => evento.fechaDesde.isBetween(moment(), moment().add(7, 'days'), 'day', '(]'))
         this.eventosProximos = this.eventos.filter(evento => evento.fechaDesde.isAfter(moment().add(7, 'days'), 'day'))

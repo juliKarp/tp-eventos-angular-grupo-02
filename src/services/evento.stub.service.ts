@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from "@angular/http";
 import Evento from '../domain/evento';
 import Invitacion from '../domain/invitacion';
 import Usuario from '../domain/usuario';
@@ -8,26 +7,16 @@ import Locacion from 'src/domain/locacion';
 import { EventoAbierto } from 'src/domain/eventoAbierto';
 import { EventoCerrado } from 'src/domain/eventoCerrado';
 import FechaUtils from 'src/utils/fechaUtils';
-import { REST_SERVER_URL } from "./configuration";
+import { EventoService } from './evento.service';
 
-const tiposEvento = {
-    'abierto': new EventoAbierto(),
-    'cerrado': new EventoCerrado()
-  }
-
-@Injectable({
-    providedIn: 'root'
-})
-export class EventoService {
-    usuarioLogeadoId: number
+export class EventoServiceStub{
     usuario: Usuario
     eventosAgenda: Evento[] = []
     eventosOrganizados: Evento[] = []
     invitacionesPendientes: Invitacion[] = []
     locaciones: Locacion[] = []
     
-    constructor(private http: Http) {
-        this.usuarioLogeadoId = 1
+    constructor() {
         const jsonUsuario = { "nombreUsuario": "martin1990", "nombreApellido": "Martín Varela", "email": "martinvarela90@yahoo.com", "tipoDeUsuario": "Usuario Free", "amigos": [{ "nombreUsuario": "usuarioMejorAmigo", "nombreApellido": "Mejor amigo" }, { "nombreUsuario": "elotroamigo", "nombreApellido": "Otro Amigo" }] }
         this.usuario = Usuario.fromJson(jsonUsuario)
 
@@ -60,39 +49,6 @@ export class EventoService {
         this.locaciones = jsonLocaciones.map(jsonLocacion =>
             Locacion.fromJson(jsonLocacion)
         )
-    }
-
-    async perfilUsuario(id: number) : Promise<Usuario> {
-        const res = await this.http.get(REST_SERVER_URL + "/perfil/" + id).toPromise()
-        return Usuario.fromJson(res.json())
-    }
-
-    async amigosUsuario(id: number) : Promise<Usuario[]> {
-        const res = await this.http.get(REST_SERVER_URL + "/amigos/" + id).toPromise()
-        return res.json().map(amigo => 
-            Usuario.fromJson(amigo)
-        );
-    }
-
-    async agendaUsuario(id: number) : Promise<Evento[]> {
-        const res = await this.http.get(REST_SERVER_URL + "/agenda/" + id).toPromise()
-        return res.json().map(evento => 
-            Evento.fromJson(evento)
-        );
-    }
-
-    async organizadosUsuario(id: number) : Promise<Evento[]> {
-        const res = await this.http.get(REST_SERVER_URL + "/organizados/" + id).toPromise()
-        return res.json().map(evento => 
-            Evento.fromJson(evento)
-        );
-    }
-
-    async invitacionesUsuario(id: number) : Promise<Invitacion[]> {
-        const res = await this.http.get(REST_SERVER_URL + "/invitaciones/" + id).toPromise()
-        return res.json().map(invitacion => 
-            Invitacion.fromJson(invitacion)
-        );
     }
 
     eliminarAmigo(eliminado: Usuario): void {

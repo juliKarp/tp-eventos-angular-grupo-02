@@ -15,7 +15,7 @@
     <tr *ngFor="let evento of eventos">
       <td>{{evento.fechaDesde | date: formatoFecha }}</td>
       <td>{{evento.nombre}}</td>
-      <td>{{evento.locacion.nombre}}</td>
+      <td>{{evento.locacion}}</td>
       <td>{{evento.invitados}}</td>
       <td>{{evento.confirmados}}</td>
       <td>{{evento.rechazados}}</td>

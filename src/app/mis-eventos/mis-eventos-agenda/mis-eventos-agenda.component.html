@@ -10,7 +10,7 @@
         <tr *ngFor="let evento of eventosHoy">
             <td>{{evento.fechaDesde | date: formatoFecha }}</td>
             <td>{{evento.nombre}}</td>
-            <td>{{evento.locacion.nombre}}</td>
+            <td>{{evento.locacion}}</td>
             <td>{{evento.organizador.nombreApellido}}</td>
         </tr>
     </tbody>
@@ -23,7 +23,7 @@
         <tr *ngFor="let evento of eventosSemana">
             <td>{{evento.fechaDesde | date: formatoFecha }}</td>
             <td>{{evento.nombre}}</td>
-            <td>{{evento.locacion.nombre}}</td>
+            <td>{{evento.locacion}}</td>
             <td>{{evento.organizador.nombreApellido}}</td>
         </tr>
     </tbody>
@@ -36,7 +36,7 @@
         <tr *ngFor="let evento of eventosProximos">
             <td>{{evento.fechaDesde | date: formatoFecha }}</td>
             <td>{{evento.nombre}}</td>
-            <td>{{evento.locacion.nombre}}</td>
+            <td>{{evento.locacion}}</td>
             <td>{{evento.organizador.nombreApellido}}</td>
         </tr>
     </tbody>

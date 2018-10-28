@@ -14,6 +14,7 @@ import { CerradoComponent } from './mis-eventos/mis-eventos-organizados/nuevo-ev
 import { RoutingRoutes } from './app.routing';
 import { PerfilComponent } from './perfil/perfil.component';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http'
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     imports: [
         FormsModule,
         BrowserModule,
-        RoutingRoutes
+        RoutingRoutes,
+        HttpModule
     ],
     providers: [
         { provide: APP_BASE_HREF, useValue: '' }

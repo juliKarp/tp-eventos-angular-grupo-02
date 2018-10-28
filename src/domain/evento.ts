@@ -15,6 +15,10 @@ export default class Evento {
     invitados : number
     confirmados: number
     rechazados: number
+    vendidas: number
+    capacidadMaxima: number
+    precio: number
+    edadMinima: number
 
     constructor() { }
 
@@ -24,8 +28,18 @@ export default class Evento {
         evento.nombre = json.nombre
         evento.fechaDesde = moment(json.fechaDesde, FechaUtils.FORMATO_FECHA_HORA_MOMENT)
         evento.fechaHasta = moment(json.fechaHasta, FechaUtils.FORMATO_FECHA_HORA_MOMENT)
-        evento.locacion = Locacion.fromJson(json.locacion)
+        //evento.locacion = Locacion.fromJson(json.locacion)
+        evento.locacion = json.locacion
         evento.organizador = Usuario.fromJson(json.organizador)
+        //Evento Cerrado
+        evento.invitados = json.cantidadInvitaciones
+        evento.confirmados = json.cantidadInvitacionesConfirmadas
+        evento.rechazados = json.cantidadInvitacionesRechazadas
+        //Evento Abierto
+        evento.vendidas = json.cantidadEntradasVendidas
+        evento.capacidadMaxima = json.capacidadMaxima
+        evento.precio = json.precio
+        evento.edadMinima = json.edadMinima
         return evento
     }
 }
