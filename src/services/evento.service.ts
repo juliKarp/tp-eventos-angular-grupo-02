@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from "@angular/http";
+import { Http, Response } from "@angular/http";
 import Invitacion from '../domain/invitacion';
 import Usuario from '../domain/usuario';
 import { formatDate, Time } from '@angular/common';
@@ -31,44 +31,41 @@ export class EventoService {
         )
     }
 
-    async perfilUsuario(id: number) : Promise<Usuario> {
-        const res = await this.http.get(REST_SERVER_URL + "/perfil/" + id).toPromise()
+    async perfil(usuarioId: number) : Promise<Usuario> {
+        const res = await this.http.get(REST_SERVER_URL + "/perfil/" + usuarioId).toPromise()
         return Usuario.fromJson(res.json())
     }
 
-    async amigosUsuario(id: number) : Promise<Usuario[]> {
-        const res = await this.http.get(REST_SERVER_URL + "/amigos/" + id).toPromise()
+    async amigos(usuarioId: number) : Promise<Usuario[]> {
+        const res = await this.http.get(REST_SERVER_URL + "/amigos/" + usuarioId).toPromise()
         return res.json().map(amigo => 
             Usuario.fromJson(amigo)
         );
     }
 
-    async agendaUsuario(id: number) : Promise<Evento[]> {
-        const res = await this.http.get(REST_SERVER_URL + "/agenda/" + id).toPromise()
+    async agenda(usuarioId: number) : Promise<Evento[]> {
+        const res = await this.http.get(REST_SERVER_URL + "/agenda/" + usuarioId).toPromise()
         return res.json().map(evento => 
             Evento.fromJson(evento)
         );
     }
 
-    async organizadosUsuario(id: number) : Promise<Evento[]> {
-        const res = await this.http.get(REST_SERVER_URL + "/organizados/" + id).toPromise()
+    async organizados(usuarioId: number) : Promise<Evento[]> {
+        const res = await this.http.get(REST_SERVER_URL + "/organizados/" + usuarioId).toPromise()
         return res.json().map(evento => 
             Evento.fromJson(evento)
         );
     }
 
-    async invitacionesUsuario(id: number) : Promise<Invitacion[]> {
-        const res = await this.http.get(REST_SERVER_URL + "/invitaciones/" + id).toPromise()
+    async invitaciones(usuarioId: number) : Promise<Invitacion[]> {
+        const res = await this.http.get(REST_SERVER_URL + "/invitaciones/" + usuarioId).toPromise()
         return res.json().map(invitacion => 
             Invitacion.fromJson(invitacion)
         );
     }
 
-    eliminarAmigo(eliminado: Usuario): void {
-        // const index = this.usuario.amigos.findIndex(amigo => eliminado.nombreUsuario == amigo.nombreUsuario)
-        // if (index != -1) {
-        //     this.usuario.amigos.splice(index, 1)
-        // }
+    eliminarAmigo(usuarioId: number, amigoId: number): Promise<Response> {
+        return this.http.get(REST_SERVER_URL + `/eliminarAmigo/${usuarioId}/${amigoId}`).toPromise()
     }
 
     crearEvento(tipoEvento: string) : Evento{

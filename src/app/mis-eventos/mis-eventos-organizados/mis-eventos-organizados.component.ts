@@ -15,7 +15,7 @@ export class MisEventosOrganizadosComponent implements OnInit {
     constructor(private eventoService: EventoService) { }
 
     async ngOnInit() {
-        const eventos = await this.eventoService.organizadosUsuario(this.eventoService.usuarioLogeadoId)
+        const eventos = await this.eventoService.organizados(this.eventoService.usuarioLogeadoId)
 
         this.eventosAbiertos = eventos.filter(evento => evento.esAbierto())
         this.eventosCerrados = eventos.filter(evento => evento.esCerrado())

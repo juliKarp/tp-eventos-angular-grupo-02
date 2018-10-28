@@ -15,7 +15,7 @@ export class MisEventosPendientesComponent implements OnInit {
     constructor(private eventoService: EventoService) { }
 
     async ngOnInit() {
-        this.invitaciones = await this.eventoService.invitacionesUsuario(this.eventoService.usuarioLogeadoId)
+        this.invitaciones = await this.eventoService.invitaciones(this.eventoService.usuarioLogeadoId)
     }
 
 }

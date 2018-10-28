@@ -17,7 +17,7 @@ export class MisEventosAgendaComponent implements OnInit {
     constructor(private eventoService: EventoService) { }
     
     async ngOnInit() {
-        const eventos = await this.eventoService.agendaUsuario(this.eventoService.usuarioLogeadoId)      
+        const eventos = await this.eventoService.agenda(this.eventoService.usuarioLogeadoId)      
         this.eventosHoy = eventos.filter(evento => evento.esHoy())
         this.eventosSemana = eventos.filter(evento => evento.esEnSemana())
         this.eventosProximos = eventos.filter(evento => evento.esFuturo())

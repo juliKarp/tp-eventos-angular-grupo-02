@@ -15,13 +15,19 @@ export class PerfilComponent implements OnInit {
 
     async ngOnInit() {       
         const usuarioId = this.eventoService.usuarioLogeadoId
-        const usuarioPromise = this.eventoService.perfilUsuario(usuarioId)
-        const amigosPromise = this.eventoService.amigosUsuario(usuarioId);
+        const usuarioPromise = this.eventoService.perfil(usuarioId)
+        const amigosPromise = this.eventoService.amigos(usuarioId);
         [this.usuario, this.amigos] = await Promise.all([usuarioPromise, amigosPromise])
     }
 
-    eliminarAmigo(amigo: Usuario) {
-        this.eventoService.eliminarAmigo(amigo)
+    async eliminarAmigo(amigo: Usuario) {
+        try {
+            await this.eventoService.eliminarAmigo(this.eventoService.usuarioLogeadoId, amigo.id)
+            this.amigos = this.amigos.filter((elemento) => elemento !== amigo)
+        } catch (error) {
+            console.log(error);
+            
+        }
     }
 
 }
