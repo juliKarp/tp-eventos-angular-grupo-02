@@ -10,7 +10,6 @@ import FechaUtils from 'src/utils/fechaUtils';
 })
 export class MisEventosAgendaComponent implements OnInit {
     formatoFecha = FechaUtils.FORMATO_FECHA_HORA_DATE
-    eventos: Evento[]
     eventosHoy: Evento[]
     eventosSemana: Evento[]
     eventosProximos: Evento[]
@@ -18,10 +17,10 @@ export class MisEventosAgendaComponent implements OnInit {
     constructor(private eventoService: EventoService) { }
     
     async ngOnInit() {
-        this.eventos = await this.eventoService.agendaUsuario(this.eventoService.usuarioLogeadoId)
-        this.eventosHoy = this.eventos.filter(evento => evento.fechaDesde.isSame(moment(), 'day'))
-        this.eventosSemana = this.eventos.filter(evento => evento.fechaDesde.isBetween(moment(), moment().add(7, 'days'), 'day', '(]'))
-        this.eventosProximos = this.eventos.filter(evento => evento.fechaDesde.isAfter(moment().add(7, 'days'), 'day'))
+        const eventos = await this.eventoService.agendaUsuario(this.eventoService.usuarioLogeadoId)      
+        this.eventosHoy = eventos.filter(evento => evento.esHoy())
+        this.eventosSemana = eventos.filter(evento => evento.esEnSemana())
+        this.eventosProximos = eventos.filter(evento => evento.esFuturo())
     }
 
 }

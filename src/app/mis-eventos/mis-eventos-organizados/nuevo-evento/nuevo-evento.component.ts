@@ -33,8 +33,8 @@ export class NuevoEventoComponent implements OnInit {
     this.inicializarCampos()
   }
 
-  nuevoEvento() {
-    this.evento.organizador = this.eventoService.usuario
+  async nuevoEvento() {
+    this.evento.organizador = await this.eventoService.perfilUsuario(this.eventoService.usuarioLogeadoId)
     this.evento.fechaDesde = FechaUtils.fechaHoraToMoment(this.fechaDesde, this.horaDesde)
     this.evento.fechaHasta = FechaUtils.fechaHoraToMoment(this.fechaHasta, this.horaHasta)
     this.eventoService.agregarEvento(this.evento)

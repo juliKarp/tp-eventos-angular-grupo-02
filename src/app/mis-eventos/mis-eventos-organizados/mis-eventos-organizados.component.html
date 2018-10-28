@@ -12,13 +12,33 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let evento of eventos">
+    <tr *ngFor="let evento of eventosCerrados">
       <td>{{evento.fechaDesde | date: formatoFecha }}</td>
       <td>{{evento.nombre}}</td>
       <td>{{evento.locacion}}</td>
       <td>{{evento.invitados}}</td>
       <td>{{evento.confirmados}}</td>
       <td>{{evento.rechazados}}</td>
+    </tr>
+  </tbody>
+  <thead>
+    <tr class="table-active">
+      <th scope="col">Fecha</th>
+      <th scope="col">Evento</th>
+      <th scope="col">Lugar</th>
+      <th scope="col">Capacidad Maxima</th>
+      <th scope="col">Entradas vendidas</th>
+      <th scope="col">Precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let evento of eventosAbiertos">
+      <td>{{evento.fechaDesde | date: formatoFecha }}</td>
+      <td>{{evento.nombre}}</td>
+      <td>{{evento.locacion}}</td>
+      <td>{{evento.capacidadMaxima}}</td>
+      <td>{{evento.vendidas}}</td>
+      <td>$ {{evento.precio}}</td>
     </tr>
   </tbody>
 </table>

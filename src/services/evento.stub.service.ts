@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import Evento from '../domain/evento';
 import Invitacion from '../domain/invitacion';
 import Usuario from '../domain/usuario';
 import { formatDate, Time } from '@angular/common';
 import Locacion from 'src/domain/locacion';
-import { EventoAbierto } from 'src/domain/eventoAbierto';
-import { EventoCerrado } from 'src/domain/eventoCerrado';
+import Evento, { EventoAbierto, EventoCerrado } from 'src/domain/evento';
 import FechaUtils from 'src/utils/fechaUtils';
 import { EventoService } from './evento.service';
 
