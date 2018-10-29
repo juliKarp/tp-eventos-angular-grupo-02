@@ -11,14 +11,21 @@ export class MisEventosOrganizadosComponent implements OnInit {
     formatoFecha = FechaUtils.FORMATO_FECHA_HORA_DATE
     eventosAbiertos: Evento[]
     eventosCerrados: Evento[]
+    error: string
+    loading: boolean = true
 
     constructor(private eventoService: EventoService) { }
 
     async ngOnInit() {
-        const eventos = await this.eventoService.organizados(this.eventoService.usuarioLogeadoId)
-
-        this.eventosAbiertos = eventos.filter(evento => evento.esAbierto())
-        this.eventosCerrados = eventos.filter(evento => evento.esCerrado())
+        try {
+            const eventos = await this.eventoService.organizados(this.eventoService.usuarioLogeadoId)
+            this.eventosAbiertos = eventos.filter(evento => evento.esAbierto())
+            this.eventosCerrados = eventos.filter(evento => evento.esCerrado())
+        } catch (error) {
+            console.log(error);
+            this.error = error._body
+        }
+        this.loading = false
     }
 
 }

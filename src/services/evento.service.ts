@@ -11,7 +11,7 @@ import { REST_SERVER_URL } from "./configuration";
 const tiposEvento = {
     'Abierto': new EventoAbierto,
     'Cerrado': new EventoCerrado
-  }
+}
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +19,7 @@ const tiposEvento = {
 export class EventoService {
     usuarioLogeadoId: number
     locaciones: Locacion[] = []
-    
+
     constructor(private http: Http) {
         this.usuarioLogeadoId = 1
         const jsonLocaciones = [
@@ -31,35 +31,35 @@ export class EventoService {
         )
     }
 
-    async perfil(usuarioId: number) : Promise<Usuario> {
+    async perfil(usuarioId: number): Promise<Usuario> {
         const res = await this.http.get(REST_SERVER_URL + "/perfil/" + usuarioId).toPromise()
         return Usuario.fromJson(res.json())
     }
 
-    async amigos(usuarioId: number) : Promise<Usuario[]> {
+    async amigos(usuarioId: number): Promise<Usuario[]> {
         const res = await this.http.get(REST_SERVER_URL + "/amigos/" + usuarioId).toPromise()
-        return res.json().map(amigo => 
+        return res.json().map(amigo =>
             Usuario.fromJson(amigo)
         );
     }
 
-    async agenda(usuarioId: number) : Promise<Evento[]> {
+    async agenda(usuarioId: number): Promise<Evento[]> {
         const res = await this.http.get(REST_SERVER_URL + "/agenda/" + usuarioId).toPromise()
-        return res.json().map(evento => 
+        return res.json().map(evento =>
             Evento.fromJson(evento)
         );
     }
 
-    async organizados(usuarioId: number) : Promise<Evento[]> {
+    async organizados(usuarioId: number): Promise<Evento[]> {
         const res = await this.http.get(REST_SERVER_URL + "/organizados/" + usuarioId).toPromise()
-        return res.json().map(evento => 
+        return res.json().map(evento =>
             Evento.fromJson(evento)
         );
     }
 
-    async invitaciones(usuarioId: number) : Promise<Invitacion[]> {
+    async invitaciones(usuarioId: number): Promise<Invitacion[]> {
         const res = await this.http.get(REST_SERVER_URL + "/invitaciones/" + usuarioId).toPromise()
-        return res.json().map(invitacion => 
+        return res.json().map(invitacion =>
             Invitacion.fromJson(invitacion)
         );
     }
@@ -68,14 +68,22 @@ export class EventoService {
         return this.http.get(REST_SERVER_URL + `/eliminarAmigo/${usuarioId}/${amigoId}`).toPromise()
     }
 
-    crearEvento(tipoEvento: string) : Evento{
-        if(tipoEvento = "abierto"){
+    aceptarInvitacion(usuarioId: number, eventoId: number, acompaniantes: number): Promise<Response> {
+        return this.http.get(REST_SERVER_URL + `/aceptarInvitacion/${usuarioId}/${eventoId}/${acompaniantes}`).toPromise()
+    }
+
+    rechazarInvitacion(usuarioId: number, eventoId: number): Promise<Response> {
+        return this.http.get(REST_SERVER_URL + `/rechazarInvitacion/${usuarioId}/${eventoId}`).toPromise()
+    }
+
+    crearEvento(tipoEvento: string): Evento {
+        if (tipoEvento = "abierto") {
             return new EventoAbierto
-        }else{
+        } else {
             return new EventoCerrado
         }
-      //  return tiposEvento[tipoEvento].copy()
-      // TODO: revisar por que tira el siguiente error: tiposEvento[tipoEvento].copy() is not a funcion
+        //  return tiposEvento[tipoEvento].copy()
+        // TODO: revisar por que tira el siguiente error: tiposEvento[tipoEvento].copy() is not a funcion
     }
 
     agregarEvento(evento: Evento) {

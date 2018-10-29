@@ -47,3 +47,11 @@
 <div class="modal fade" id="nuevoEvento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <router-outlet></router-outlet>
 </div>
+
+<div *ngIf="loading" class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
+</div>
+<div *ngIf="error" class="alert alert-dismissible alert-danger">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{error}}
+</div>

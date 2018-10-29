@@ -13,14 +13,22 @@ export class MisEventosAgendaComponent implements OnInit {
     eventosHoy: Evento[]
     eventosSemana: Evento[]
     eventosProximos: Evento[]
+    error: string
+    loading: boolean = true
 
     constructor(private eventoService: EventoService) { }
-    
+
     async ngOnInit() {
-        const eventos = await this.eventoService.agenda(this.eventoService.usuarioLogeadoId)      
-        this.eventosHoy = eventos.filter(evento => evento.esHoy())
-        this.eventosSemana = eventos.filter(evento => evento.esEnSemana())
-        this.eventosProximos = eventos.filter(evento => evento.esFuturo())
+        try {
+            const eventos = await this.eventoService.agenda(this.eventoService.usuarioLogeadoId)
+            this.eventosHoy = eventos.filter(evento => evento.esHoy())
+            this.eventosSemana = eventos.filter(evento => evento.esEnSemana())
+            this.eventosProximos = eventos.filter(evento => evento.esFuturo())
+        } catch (error) {
+            console.log(error);
+            this.error = error._body
+        }
+        this.loading = false
     }
 
 }

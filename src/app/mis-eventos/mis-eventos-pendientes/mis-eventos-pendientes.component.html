@@ -11,19 +11,33 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let invitacion of invitaciones">
+    <tr *ngFor="let invitacion of invitaciones" [ngClass]="{'table-success': invitacion.aceptada, 'table-danger': invitacion.rechazada}">
       <td>{{invitacion.evento.fechaDesde | date: formatoFecha}}</td>
       <td>{{invitacion.evento.nombre}}</td>
       <td>{{invitacion.evento.locacion}}</td>
       <td>{{invitacion.evento.organizador.nombreApellido}}</td>
-      <td>{{invitacion.acompaniantes}}</td>
-      <td><button type="button" class="btn btn-success btn-sm">
+      
+      <td *ngIf="invitacion.pendiente(); else elsePendiente">
+        <input type="number" class="form-control" name="acompaniantes" [(ngModel)]="invitacion.acompaniantes">
+      </td>
+      <ng-template #elsePendiente>
+        <td>{{invitacion.acompaniantes}}</td>
+      </ng-template>
+      
+      <td><button *ngIf="invitacion.pendiente()" type="button" class="btn btn-success btn-sm" (click)="aceptar(invitacion)">
           <i class="fas fa-calendar-check"></i>
         </button>
-        <button type="button" class="btn btn-danger btn-sm">
+        <button *ngIf="invitacion.pendiente()" type="button" class="btn btn-danger btn-sm" (click)="rechazar(invitacion)">
           <i class="fas fa-calendar-times"></i>
         </button>
       </td>
     </tr>
   </tbody>
 </table>
+<div *ngIf="loading" class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
+</div>
+<div *ngIf="error" class="alert alert-dismissible alert-danger">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{error}}
+</div>
