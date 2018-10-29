@@ -14,7 +14,7 @@
     <tr *ngFor="let invitacion of invitaciones" [ngClass]="{'table-success': invitacion.aceptada, 'table-danger': invitacion.rechazada}">
       <td>{{invitacion.evento.fechaDesde | date: formatoFecha}}</td>
       <td>{{invitacion.evento.nombre}}</td>
-      <td>{{invitacion.evento.locacion}}</td>
+      <td>{{invitacion.evento.locacion.nombre}}</td>
       <td>{{invitacion.evento.organizador.nombreApellido}}</td>
       
       <td *ngIf="invitacion.pendiente(); else elsePendiente">

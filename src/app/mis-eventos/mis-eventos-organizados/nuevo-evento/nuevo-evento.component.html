@@ -1,16 +1,12 @@
 <div class="modal-dialog" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Nuevo evento abierto</h5>
+      <h5 class="modal-title" id="exampleModalLabel">Nuevo evento {{evento.tipo}}</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <!--div>
-      <p>Id</p>
-      <input type="text" id="id" value="{{evento.id}}" readonly>
-      </div-->
       <form>
         <div class="form-row">
           <div class="form-group col-md-6">
@@ -27,7 +23,7 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="fechaDesde">Desde</label>
-            <input type="date" [min]="today()" class="form-control" name="fechaDesde" [(ngModel)]="fechaDesde">
+            <input type="date" [min]="fechaMinima()" class="form-control" name="fechaDesde" [(ngModel)]="fechaDesde">
           </div>
           <div class="form-group col-md-6">
             <label for="horaDesde">Hora</label>
@@ -37,20 +33,38 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="fechaHasta">Hasta</label>
-            <input type="date" [min]="minHasta()" class="form-control" name="fechaHasta" [(ngModel)]="fechaHasta">
+            <input type="date" [min]="fechaInicio()" class="form-control" name="fechaHasta" [(ngModel)]="fechaHasta">
           </div>
           <div class="form-group col-md-6">
             <label for="horaHasta">Hora</label>
             <input type="time" class="form-control" name="horaHasta" [(ngModel)]="horaHasta">
           </div>
         </div>
-        <router-outlet></router-outlet>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="fechaConfirmacion">Fecha máxima confirmación</label>
+            <input type="date" [min]="fechaMinima()" [max]="fechaInicio()" class="form-control" name="fechaConfirmacion" [(ngModel)]="fechaConfirmacion">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="horaMaximaConfirmacion">Hora</label>
+            <input type="time" class="form-control" name="horaConfirmacion" [(ngModel)]="horaConfirmacion">
+          </div>
+        </div>
+        <router-outlet (activate)="componenteActivado($event)"></router-outlet>
       </form>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" (click)="inicializarCampos()">Restablecer</button>
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-      <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="nuevoEvento(evento)">Guardar</button>
+      <button type="submit" [disabled]="loading || disableSubmit" class="btn btn-primary" (click)="nuevoEvento(evento)">Guardar</button>
+    </div>
+    
+    <div *ngIf="loading" class="progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
+    </div>
+    <div *ngIf="error" class="alert alert-dismissible alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      {{error}}
     </div>
   </div>
 </div>

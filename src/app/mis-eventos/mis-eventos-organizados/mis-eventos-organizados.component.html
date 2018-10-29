@@ -15,7 +15,7 @@
     <tr *ngFor="let evento of eventosCerrados">
       <td>{{evento.fechaDesde | date: formatoFecha }}</td>
       <td>{{evento.nombre}}</td>
-      <td>{{evento.locacion}}</td>
+      <td>{{evento.locacion.nombre}}</td>
       <td>{{evento.invitados}}</td>
       <td>{{evento.confirmados}}</td>
       <td>{{evento.rechazados}}</td>
@@ -35,7 +35,7 @@
     <tr *ngFor="let evento of eventosAbiertos">
       <td>{{evento.fechaDesde | date: formatoFecha }}</td>
       <td>{{evento.nombre}}</td>
-      <td>{{evento.locacion}}</td>
+      <td>{{evento.locacion.nombre}}</td>
       <td>{{evento.capacidadMaxima}}</td>
       <td>{{evento.vendidas}}</td>
       <td>$ {{evento.precio}}</td>

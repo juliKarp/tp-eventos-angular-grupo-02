@@ -8,27 +8,13 @@ import Evento, { EventoAbierto, EventoCerrado } from 'src/domain/evento';
 import FechaUtils from 'src/utils/fechaUtils';
 import { REST_SERVER_URL } from "./configuration";
 
-const tiposEvento = {
-    'Abierto': new EventoAbierto,
-    'Cerrado': new EventoCerrado
-}
-
 @Injectable({
     providedIn: 'root'
 })
 export class EventoService {
     usuarioLogeadoId: number
-    locaciones: Locacion[] = []
-
     constructor(private http: Http) {
         this.usuarioLogeadoId = 1
-        const jsonLocaciones = [
-            { "x": -34.603759, "y": -58.381586, "nombre": "Salón El Abierto" },
-            { "x": -34.572224, "y": -58.535651, "nombre": "Estadio Obras" }
-        ]
-        this.locaciones = jsonLocaciones.map(jsonLocacion =>
-            Locacion.fromJson(jsonLocacion)
-        )
     }
 
     async perfil(usuarioId: number): Promise<Usuario> {
@@ -76,18 +62,16 @@ export class EventoService {
         return this.http.get(REST_SERVER_URL + `/rechazarInvitacion/${usuarioId}/${eventoId}`).toPromise()
     }
 
-    crearEvento(tipoEvento: string): Evento {
-        if (tipoEvento = "abierto") {
-            return new EventoAbierto
-        } else {
-            return new EventoCerrado
-        }
-        //  return tiposEvento[tipoEvento].copy()
-        // TODO: revisar por que tira el siguiente error: tiposEvento[tipoEvento].copy() is not a funcion
+    async locaciones(): Promise<Locacion[]> {
+        const res = await this.http.get(REST_SERVER_URL + "/locaciones").toPromise()
+        return res.json().map(locacion =>
+            Locacion.fromJson(locacion)
+        );
     }
 
-    agregarEvento(evento: Evento) {
+    agregarEvento(usuarioId: number, evento: Evento) {
         console.log("evento pusheado: ", evento)
+        return this.http.put(REST_SERVER_URL + "/nuevoEvento/" + usuarioId, evento).toPromise()
         // this.eventosOrganizados.push(evento)
     }
 }

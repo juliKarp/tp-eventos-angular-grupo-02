@@ -10,6 +10,7 @@ export default class Evento {
     tipo: string
     id: number
     nombre: string
+    capacidadMaxima: number
     fechaConfirmacion: Moment
     fechaDesde: Moment
     fechaHasta: Moment
@@ -31,12 +32,12 @@ export default class Evento {
         evento.tipo = json.tipo
         evento.id = json.id
         evento.nombre = json.nombre
+        evento.capacidadMaxima = json.capacidadMaxima
         evento.fechaConfirmacion = moment(json.fechaMaximaConfirmacion, FechaUtils.FORMATO_FECHA_HORA_MOMENT)
         evento.fechaDesde = moment(json.fechaDesde, FechaUtils.FORMATO_FECHA_HORA_MOMENT)
         evento.fechaHasta = moment(json.fechaHasta, FechaUtils.FORMATO_FECHA_HORA_MOMENT)
-        evento.locacion = json.locacion
         evento.organizador = Usuario.fromJson(json.organizador)
-        //evento.locacion = Locacion.fromJson(json.locacion)
+        evento.locacion = Locacion.fromJson(json.locacion)
         return evento
     }
 
@@ -56,19 +57,18 @@ export default class Evento {
 export class EventoAbierto extends Evento {
 
     vendidas: number
-    capacidadMaxima: number
     precio: number
     edadMinima: number
 
     constructor() {
         super()
+        this.tipo = "Abierto"
     }
 
     static fromJson(json: any): EventoAbierto {
         if (!json) { return }
         const evento = new EventoAbierto()
         evento.vendidas = json.cantidadEntradasVendidas
-        evento.capacidadMaxima = json.capacidadMaxima
         evento.precio = json.precio
         evento.edadMinima = json.edadMinima
         return evento
@@ -85,6 +85,7 @@ export class EventoCerrado extends Evento {
 
     constructor() {
         super()
+        this.tipo = "Cerrado"
     }
 
     static fromJson(json: any): EventoCerrado {

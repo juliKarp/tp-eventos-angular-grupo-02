@@ -1,16 +1,14 @@
 export default class Locacion {
+    id : string
     nombre : string
-    ubicacionX : number 
-    ubicacionY : number 
 
-    constructor(nombre:string,x:number,y:number) {
-        this.nombre = nombre
-        this.ubicacionX = x
-        this.ubicacionY = y
-    }
+    constructor() {}
 
-    static fromJson(jsonLocacion:any): Locacion {
-        if (!jsonLocacion) {return}
-        return new Locacion(jsonLocacion.nombre,jsonLocacion.x,jsonLocacion.y)
+    static fromJson(json:any): Locacion {
+        if (!json) {return}
+        const locacion = new Locacion()
+        locacion.id = json.id
+        locacion.nombre = json.nombre
+        return locacion
     }
 }
