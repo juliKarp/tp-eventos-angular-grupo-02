@@ -34,6 +34,7 @@ export class PerfilComponent implements OnInit {
         try {
             await this.eventoService.eliminarAmigo(this.eventoService.usuarioLogeadoId, amigo.id)
             this.amigos = this.amigos.filter((elemento) => elemento !== amigo)
+            this.usuario.cantidadAmigos = this.amigos.length
         } catch (error) {
             console.log(error);
             this.error = error._body

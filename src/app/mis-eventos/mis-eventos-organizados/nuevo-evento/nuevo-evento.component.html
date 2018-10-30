@@ -1,7 +1,7 @@
 <div class="modal-dialog" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Nuevo evento {{evento.tipo}}</h5>
+      <h5 class="modal-title" id="exampleModalLabel">Nuevo Evento {{evento.tipo}}</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -54,8 +54,8 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="inicializarCampos()">Restablecer</button>
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+      <button type="button" [disabled]="disableSubmit" class="btn btn-secondary" (click)="inicializarCampos()">Restablecer</button>
+      <button type="button" [disabled]="disableSubmit" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
       <button type="submit" [disabled]="loading || disableSubmit" class="btn btn-primary" (click)="nuevoEvento(evento)">Guardar</button>
     </div>
     
@@ -65,6 +65,11 @@
     <div *ngIf="error" class="alert alert-dismissible alert-danger">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       {{error}}
+    </div>
+    <div *ngIf="disableSubmit" class="alert alert-success">
+      Evento creado correctamente.
+      <button type="button" class="btn btn-secondary float-right" (click)="cerrarMenu()">Volver</button>
+      <button type="button" id="dismissModal" style="display: none" data-dismiss="modal"></button>
     </div>
   </div>
 </div>

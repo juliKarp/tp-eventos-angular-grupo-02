@@ -47,7 +47,6 @@ export class NuevoEventoComponent implements OnInit {
             this.evento.fechaConfirmacion = FechaUtils.fechaHoraToMoment(this.fechaConfirmacion, this.horaConfirmacion)
             await this.eventoService.agregarEvento(this.eventoService.usuarioLogeadoId, this.evento)
             this.disableSubmit = true
-            //this.cerrarMenu()
         } catch (error) {
             console.log(error);
             this.error = error._body
@@ -73,6 +72,8 @@ export class NuevoEventoComponent implements OnInit {
     }
 
     cerrarMenu() {
-        this.router.navigate(['/eventos/organizados/'])
+        var elemento: HTMLElement = document.getElementById('dismissModal') as HTMLElement
+        elemento.click()
+        this.router.navigate(['/eventos/#/'])
     }
 }
