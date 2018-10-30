@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventoService } from '../../../services/evento.service';
 import Invitacion from '../../../domain/invitacion';
 import FechaUtils from 'src/utils/fechaUtils';
+import { Estado } from 'src/app/estado-componente/estado';
 
 @Component({
     selector: 'app-mis-eventos-pendientes',
@@ -11,8 +12,7 @@ export class MisEventosPendientesComponent implements OnInit {
 
     invitaciones: Invitacion[]
     formatoFecha = FechaUtils.FORMATO_FECHA_HORA_DATE
-    error: string
-    loading: boolean = true
+    estado: Estado = new Estado()
 
     constructor(private eventoService: EventoService) { }
 
@@ -20,35 +20,32 @@ export class MisEventosPendientesComponent implements OnInit {
         try {
             this.invitaciones = await this.eventoService.invitaciones(this.eventoService.usuarioLogeadoId)
         } catch (error) {
-            console.log(error);
-            this.error = error._body
+            this.estado.respuestaError(error)
         }
-        this.loading = false
+        this.estado.listo()
     }
 
     async aceptar(invitacion: Invitacion) {
-        this.loading = true
-        this.error = undefined
+        this.estado.cargando()
+        this.estado.limpiarErrores()
         try {
             await this.eventoService.aceptarInvitacion(this.eventoService.usuarioLogeadoId, invitacion.evento.id, invitacion.acompaniantes)
             invitacion.aceptar()
         } catch (error) {
-            console.log(error);
-            this.error = error._body
+            this.estado.respuestaError(error)
         }
-        this.loading = false
+        this.estado.listo()
     }
 
     async rechazar(invitacion: Invitacion) {
-        this.loading = true
-        this.error = undefined
+        this.estado.cargando()
+        this.estado.limpiarErrores()
         try {
             await this.eventoService.rechazarInvitacion(this.eventoService.usuarioLogeadoId, invitacion.evento.id)
             invitacion.rechazar()
         } catch (error) {
-            console.log(error);
-            this.error = error._body
+            this.estado.respuestaError(error)
         }
-        this.loading = false
+        this.estado.listo()
     }
 }

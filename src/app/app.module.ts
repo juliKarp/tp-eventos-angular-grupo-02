@@ -15,30 +15,32 @@ import { RoutingRoutes } from './app.routing';
 import { PerfilComponent } from './perfil/perfil.component';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http'
+import { EstadoComponenteComponent } from './estado-componente/estado-componente.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        MisEventosComponent,
-        MisEventosAgendaComponent,
-        MisEventosOrganizadosComponent,
-        MisEventosPendientesComponent,
-        PerfilComponent,
-        NuevoEventoComponent,
-        AbiertoComponent,
-        CerradoComponent
-    ],
-    imports: [
-        FormsModule,
-        BrowserModule,
-        RoutingRoutes,
-        HttpModule
-    ],
-    providers: [
+   declarations: [
+      AppComponent,
+      MisEventosComponent,
+      MisEventosAgendaComponent,
+      MisEventosOrganizadosComponent,
+      MisEventosPendientesComponent,
+      PerfilComponent,
+      NuevoEventoComponent,
+      AbiertoComponent,
+      CerradoComponent,
+      EstadoComponenteComponent
+   ],
+   imports: [
+      FormsModule,
+      BrowserModule,
+      RoutingRoutes,
+      HttpModule
+   ],
+   providers: [
         { provide: APP_BASE_HREF, useValue: '' }
-    ],
-    bootstrap: [
-        AppComponent
-    ]
+   ],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventoService } from '../../../services/evento.service';
 import Evento, { EventoAbierto, EventoCerrado } from '../../../domain/evento';
 import FechaUtils from 'src/utils/fechaUtils';
+import { Estado } from 'src/app/estado-componente/estado';
 
 @Component({
     selector: 'app-mis-eventos-organizados',
@@ -11,8 +12,7 @@ export class MisEventosOrganizadosComponent implements OnInit {
     formatoFecha = FechaUtils.FORMATO_FECHA_HORA_DATE
     eventosAbiertos: Evento[]
     eventosCerrados: Evento[]
-    error: string
-    loading: boolean = true
+    estado: Estado = new Estado()
 
     constructor(private eventoService: EventoService) { }
 
@@ -22,10 +22,9 @@ export class MisEventosOrganizadosComponent implements OnInit {
             this.eventosAbiertos = eventos.filter(evento => evento.esAbierto())
             this.eventosCerrados = eventos.filter(evento => evento.esCerrado())
         } catch (error) {
-            console.log(error);
-            this.error = error._body
+            this.estado.respuestaError(error)
         }
-        this.loading = false
+        this.estado.listo()
     }
 
 }

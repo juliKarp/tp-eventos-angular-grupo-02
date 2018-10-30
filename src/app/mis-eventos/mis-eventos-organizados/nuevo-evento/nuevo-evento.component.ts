@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { Estado } from 'src/app/estado-componente/estado';
 import Evento from 'src/domain/evento';
 import Locacion from 'src/domain/locacion';
 import FechaUtils from 'src/utils/fechaUtils';
 import { EventoService } from '../../../../services/evento.service';
-import { CerradoComponent } from './cerrado/cerrado.component';
 import { AbiertoComponent } from './abierto/abierto.component';
-import { Router } from '@angular/router';
+import { CerradoComponent } from './cerrado/cerrado.component';
 
 @Component({
     selector: 'app-nuevo-evento',
@@ -23,24 +24,30 @@ export class NuevoEventoComponent implements OnInit {
     horaConfirmacion: string
     locacionesDisponibles: Locacion[] = []
 
-    error: string
-    loading: boolean
+    estado: Estado = new Estado()
     disableSubmit: boolean
 
     constructor(private eventoService: EventoService, private router: Router) { }
 
     async ngOnInit() {
-        this.locacionesDisponibles = await this.eventoService.locaciones()
-        this.inicializarCampos()
+        try {
+            this.locacionesDisponibles = await this.eventoService.locaciones()
+            this.inicializarCampos()
+        } catch (error) {
+            this.estado.respuestaError(error)
+        }
+        this.estado.listo()
     }
 
     componenteActivado(componente: CerradoComponent | AbiertoComponent) {
+        this.estado.cargando()
+        this.estado.limpiarErrores()
         this.evento = componente.nuevoEvento()
     }
 
     async nuevoEvento() {
-        this.loading = true
-        this.error = undefined
+        this.estado.cargando()
+        this.estado.limpiarErrores()
         try {
             this.evento.fechaDesde = FechaUtils.fechaHoraToMoment(this.fechaDesde, this.horaDesde)
             this.evento.fechaHasta = FechaUtils.fechaHoraToMoment(this.fechaHasta, this.horaHasta)
@@ -48,10 +55,9 @@ export class NuevoEventoComponent implements OnInit {
             await this.eventoService.agregarEvento(this.eventoService.usuarioLogeadoId, this.evento)
             this.disableSubmit = true
         } catch (error) {
-            console.log(error);
-            this.error = error._body
+            this.estado.respuestaError(error)
         }
-        this.loading = false
+        this.estado.listo()
     }
 
     inicializarCampos() {

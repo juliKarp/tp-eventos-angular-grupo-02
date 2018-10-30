@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Usuario from '../../domain/usuario';
 import { EventoService } from '../../services/evento.service';
+import { Estado } from '../estado-componente/estado';
 
 @Component({
     selector: 'app-perfil',
@@ -10,8 +11,7 @@ export class PerfilComponent implements OnInit {
 
     usuario: Usuario = new Usuario()
     amigos: Usuario[]
-    error: string
-    loading: boolean = true
+    estado: Estado = new Estado()
 
     constructor(private eventoService: EventoService) { }
 
@@ -22,24 +22,22 @@ export class PerfilComponent implements OnInit {
             const amigosPromise = this.eventoService.amigos(usuarioId);
             [this.usuario, this.amigos] = await Promise.all([usuarioPromise, amigosPromise])
         } catch (error) {
-            console.log(error);
-            this.error = error
+            this.estado.respuestaError(error)
         }
-        this.loading = false
+        this.estado.listo()
     }
 
     async eliminarAmigo(amigo: Usuario) {
-        this.loading = true
-        this.error = undefined
+        this.estado.cargando()
+        this.estado.limpiarErrores()
         try {
             await this.eventoService.eliminarAmigo(this.eventoService.usuarioLogeadoId, amigo.id)
             this.amigos = this.amigos.filter((elemento) => elemento !== amigo)
             this.usuario.cantidadAmigos = this.amigos.length
         } catch (error) {
-            console.log(error);
-            this.error = error._body
+            this.estado.respuestaError(error)
         }
-        this.loading = false
+        this.estado.listo()
     }
 
 }
