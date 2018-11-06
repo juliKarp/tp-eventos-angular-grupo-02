@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from "@angular/http";
 import Invitacion from '../domain/invitacion';
 import Usuario from '../domain/usuario';
-import { formatDate, Time } from '@angular/common';
 import Locacion from 'src/domain/locacion';
-import Evento, { EventoAbierto, EventoCerrado } from 'src/domain/evento';
-import FechaUtils from 'src/utils/fechaUtils';
+import Evento from 'src/domain/evento';
 import { REST_SERVER_URL } from "./configuration";
 
 @Injectable({
@@ -51,15 +49,16 @@ export class EventoService {
     }
 
     eliminarAmigo(usuarioId: number, amigoId: number): Promise<Response> {
-        return this.http.get(REST_SERVER_URL + `/eliminarAmigo/${usuarioId}/${amigoId}`).toPromise()
+        return this.http.put(REST_SERVER_URL + "/eliminarAmigo/" + usuarioId, amigoId).toPromise()
     }
 
     aceptarInvitacion(usuarioId: number, eventoId: number, acompaniantes: number): Promise<Response> {
-        return this.http.get(REST_SERVER_URL + `/aceptarInvitacion/${usuarioId}/${eventoId}/${acompaniantes}`).toPromise()
+        const jsonAceptarInvitacion = '{"eventoId":'+eventoId+',"acompaniantes":'+acompaniantes+'}'
+        return this.http.put(REST_SERVER_URL + "/aceptarInvitacion/" + usuarioId, jsonAceptarInvitacion).toPromise()
     }
 
     rechazarInvitacion(usuarioId: number, eventoId: number): Promise<Response> {
-        return this.http.get(REST_SERVER_URL + `/rechazarInvitacion/${usuarioId}/${eventoId}`).toPromise()
+        return this.http.put(REST_SERVER_URL + "/rechazarInvitacion/" + usuarioId, eventoId).toPromise()
     }
 
     async locaciones(): Promise<Locacion[]> {
